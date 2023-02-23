@@ -1,0 +1,27 @@
+{#  {% extends 'baseFront.html.twig' %}
+{% block title %}Les académies{% endblock %}
+{% block body %}
+<h1> les académies </h1>
+    {% for a in ac %}
+        <div class="container">
+             <div class="feature-post small-blog text-center"> 
+                <div class="col-md-7">
+                    <div class="feature-cont text-center"> 
+                        <div class="post-info text-center">
+                            <h2><font color="#30458B"><b>{{ a.getNom() }}</b></font></h2>
+                            <p><b>Adresse :   </b>{{ a.getAdresse() }} </p>
+                            <p><b>Numéro de téléphone : </b>{{ a.getNumtel() }}</p>
+                            <p><b>Sport proposé :</b> {{ a.getSportpropose() }}</p>
+                        </div>
+                        <div class="post-heading">
+                            <div class="full">
+                                <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path('app_')}}">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+  #}
