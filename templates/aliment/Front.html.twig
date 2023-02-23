@@ -1,0 +1,68 @@
+{% extends 'baseFront.html.twig' %}
+
+
+{% block body %}
+            {% for a in a  %}
+                <div class="container">
+                    <div class="feature-post small-blog">
+
+                        <div class="col-md-7">
+                            <div class="feature-cont">
+                                <div class="post-info">
+
+                                    <h2 ><Font color="#30458B"><B>{{a.nom}}</B></Font></h2>
+                                    <h5><B>Nombre calories : </B>{{a.NbCal}}</h5>
+
+                                </div>
+
+                                <div class="post-heading">
+                                    <div class="full" >
+
+                                        <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="#" data-toggle="modal" data-target="#exampleModal">Détails</a>
+
+                                        <!-- Fenêtre modale -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-body">
+
+                                                        <h1>{{ a.Nom }}</h1>
+
+                                                        <table class="table">
+                                                            <tbody>
+
+                                                            <tr>
+                                                                <th>Cal</th>
+                                                                <td>{{ a.NbCal }}</td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th>Description</th>
+                                                                <td>{{ a.Descr }}</td>
+                                                            </tr>
+
+
+                                                            </tbody>
+                                                        </table>
+
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{ path('affichage_aliment_front') }}" data-toggle="modal" data-target="#exampleModal">Fermer</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endblock %}
+

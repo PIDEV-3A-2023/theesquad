@@ -1,0 +1,37 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+
+
+
+{% block body %}
+    <h1>Objectif</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ objectif.id }}</td>
+            </tr>
+            <tr>
+                <th>PoidsDes</th>
+                <td>{{ objectif.PoidsDes }}</td>
+            </tr>
+            <tr>
+                <th>TypeReg</th>
+                <td>{{ objectif.TypeReg }}</td>
+            </tr>
+            <tr>
+                <th>CalCons</th>
+                <td>{{ objectif.CalCons }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_objectif_index') }}">back to list</a>
+
+    <a href="{{ path('app_objectif_edit', {'id': objectif.id}) }}">edit</a>
+
+    {{ include('objectif/_delete_form.html.twig') }}
+{% endblock %}
