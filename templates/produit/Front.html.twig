@@ -1,0 +1,35 @@
+{% extends 'baseFronthtml.twig' %}
+        {% block body %}
+            {% for p in produit   %}
+                <div class="container">
+                    <div class="feature-post small-blog">
+                        <div class="col-md-5">
+                            <div class="feature-img">
+                                <img  src="{{ asset('Back/img/' ~ p.image )  }}" alt="" width="400" height="300" />
+                                {# <img src="images/post2.png" class="img-responsive" alt="#" /> #}
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="feature-cont">
+                                <div class="post-info">
+
+                                    <h2 ><Font color="#30458B"><B>{{p.nom}}</B></Font></h2>
+                                    <h5><B>Prix : </B>{{p.prix}}</h5>
+
+                                </div>
+                                <div class="post-heading">
+                                    <h4>{{p.description}}</B></h4>
+                                    <div class="full" >
+                                        <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="#">Details</a>
+                                        <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="#">Commander</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% endblock %}
+
