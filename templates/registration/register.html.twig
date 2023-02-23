@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="bg-gradient-primary">
+        <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Vous etes</h1>
+                                </div>
+                                <div class="user">
+
+                                    <a href="{{ path('app_registerClient') }}" class="btn btn-primary btn-user btn-block">Client</a>
+                                    <a href="{{ path('app_registerCoach') }}" class="btn btn-primary btn-user btn-block">Coach</a>
+
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_forgot_password_request') }}">Forgot Password?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_login') }}">Already have an account? Login!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

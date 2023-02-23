@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="bg-gradient-primary">
+        <div class="container">
+
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
+
+                <div class="col-xl-10 col-lg-12 col-md-9">
+
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        </div>
+                                        <form class="user" method="post">
+
+                                            {% if error %}
+                                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                            {% endif %}
+
+                                            {% if app.user %}
+                                                <div class="mb-3">
+                                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                                </div>
+                                            {% endif %}
+
+                                            <div class="form-group">
+                                                <input type="email" value="{{ last_username }}" placeholder="Enter Email Address..." name="email" id="inputEmail" class="form-control form-control-user" autocomplete="email" required autofocus>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" name="password" id="inputPassword" placeholder="Password" class="form-control form-control-user" autocomplete="current-password" required>
+                                            </div>
+
+                                            <input type="hidden" name="_csrf_token"
+                                                   value="{{ csrf_token('authenticate') }}"
+                                            >
+
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox small">
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                    <label class="custom-control-label" for="customCheck">Remember
+                                                        Me</label>
+                                                </div>
+                                            </div>
+
+                                            {#
+                                            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                                            See https://symfony.com/doc/current/security/remember_me.html
+
+                                            <div class="checkbox mb-3">
+                                                <label>
+                                                    <input type="checkbox" name="_remember_me"> Remember me
+                                                </label>
+                                            </div>
+                                            #}
+
+                                            <button class="btn btn-lg btn-primary" type="submit">
+                                                Sign in
+                                            </button>
+
+                                        </form>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a class="small" href="{{ path('app_forgot_password_request') }}">Forgot Password?</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="small" href="{{ path('app_register') }}">Create an Account!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

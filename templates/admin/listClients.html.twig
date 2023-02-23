@@ -1,0 +1,72 @@
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+{% block admin %}
+
+
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Listes des Clients vérifiés</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header ">
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="{{ path('app_admin_rechercheClientsV') }}">
+                    <div class="input-group">
+                        <input name="search" type="text" class="form-control bg-light border-0 small" placeholder="Search for...">
+                        <input value="Recherche" type="submit" class="form-control bg-light border-0 small">
+                    </div>
+                </form>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nom & Prénom</th>
+                            <th>DateNaissance</th>
+                            <th>Genre</th>
+                            <th>Télèphone</th>
+                            <th>Adresse e-mail</th>
+                            <th>État e-mail</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td>
+                                    <img style="width: 60px; height: 60px; object-fit: cover;" class="img-profile rounded-circle" src="{{ asset('Client_img/' ~ client.image) }}">
+                                    <span>{{ client.nom }} {{ client.prenom }}</span>
+                                </td>
+                                <td>{{ client.dateNaissance ? client.dateNaissance|date('Y-m-d') : '' }}</td>
+                                <td>{{ client.genre }}</td>
+                                <td>{{ client.telephone }}</td>
+                                <td>{{ client.email }}</td>
+                                <td>{{ client.verified ? 'Vérifié' : 'Non vérifié' }}</td>
+                                <td>
+                                    <a class="btn btn-circle btn-danger" data-toggle="tooltip" data-placement="top" title="Désactiver compte" href="{{ path('app_client_desactiver', {'id': client.id}) }}"><i class="fas fa-user-times"></i></a>
+                                    <a class="btn btn-circle btn-dark" data-toggle="tooltip" data-placement="top" title="Supprimer" href="{{ path('app_client_delete', {'id': client.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12">no records found</td>
+                            </tr>
+                        {% endfor %}
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
