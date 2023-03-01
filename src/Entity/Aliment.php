@@ -22,7 +22,9 @@ class Aliment
     /**
      * @Assert\NotBlank(message="Le nom ne peut pas être vide")
      * @Assert\Length(max=255, maxMessage="Le nom ne peut pas dépasser {{ limit }} caractères")
+
      */
+
 
     public ?string $Nom = null;
 

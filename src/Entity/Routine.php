@@ -26,18 +26,13 @@ class Routine
     private ?Aliment $Dejeuner = null;
 
 
-
-
-
-
-
     #[ORM\Column]
     #[Assert\NotBlank(message: "Veuillez remplir les calories consommés")]
     private ?int $CalCons = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
 
-    #[Assert\GreaterThan("today", message:"Le tarif horaire must not be in the past.")]
+    #[Assert\GreaterThan("today", message:"Date must not be in the past.")]
     private ?\DateTimeInterface $Date = null;
 
     #[ORM\ManyToOne(inversedBy: 'routines')]

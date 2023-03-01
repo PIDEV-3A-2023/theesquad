@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Aliment;
 use App\Form\Aliment1Type;
 use App\Repository\AlimentRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/aliment')]
 class AlimentController extends AbstractController
 {
+    #[Route('/DetailAliment', name: 'affichage_aliment_front')]
+    public function indexFront(AlimentRepository $RepositoryRepo): Response
+    {
+        // return $this->render('evenement/Front.html.twig', []);
+        $aliment=$RepositoryRepo->findAll();
+        return $this->render('aliment/Front.html.twig',['a'=>$aliment]);
+    }
+
+
     #[Route('/', name: 'app_aliment_index', methods: ['GET'])]
     public function index(AlimentRepository $alimentRepository): Response
     {
@@ -75,4 +85,7 @@ class AlimentController extends AbstractController
 
         return $this->redirectToRoute('app_aliment_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
 }

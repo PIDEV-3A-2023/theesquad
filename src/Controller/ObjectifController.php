@@ -21,7 +21,7 @@ class ObjectifController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_objectif_new', methods: ['GET', 'POST'])]
+    #[Route('/new', name: 'app_objectif_newB', methods: ['GET', 'POST'])]
     public function new(Request $request, ObjectifRepository $objectifRepository): Response
     {
         $objectif = new Objectif();
@@ -48,7 +48,12 @@ class ObjectifController extends AbstractController
         $form = $this->createForm(Objectif1Type::class, $objectif);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+
+            
             $objectifRepository->save($objectif, true);
 
             return $this->redirectToRoute('app_objectif_index', [], Response::HTTP_SEE_OTHER);
@@ -62,8 +67,9 @@ class ObjectifController extends AbstractController
     #[Route('/{id}', name: 'app_objectif_show', methods: ['GET'])]
     public function show(Objectif $objectif): Response
     {
-        return $this->render('objectif/FrontObjectif.html.twig', [
+        return $this->render('objectif/show.html.twig', [
             'objectif' => $objectif,
+
         ]);
     }
 

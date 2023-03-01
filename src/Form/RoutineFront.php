@@ -6,6 +6,8 @@ use App\Entity\Aliment;
 use App\Entity\Objectif;
 use App\Entity\Routine;
 use App\Repository\AlimentRepository;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 
 
 
@@ -20,7 +22,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 
 
-class Routine1Type extends AbstractType
+class RoutineFront extends AbstractType
 {
 
 
@@ -32,18 +34,23 @@ class Routine1Type extends AbstractType
 
 
 
-
+        $defaultCalCons = 0;
 
 
         $builder
 
 
-            ->add('Dejeuner',EntityType::class,['class'=>Aliment::class,'choice_label'=>'Nom'])
-            ->add('Midi',EntityType::class,['class'=>Aliment::class,'choice_label'=>'Nom'])
-            ->add('Dinner',EntityType::class,['class'=>Aliment::class,'choice_label'=>'Nom'])
-            ->add('CalCons')
-            ->add('Date')
-            ->add('objectif', EntityType::class,['class' => Objectif::class, 'choice_label' => 'id' ])
+
+         ->add('Dejeuner',EntityType::class,['class'=>Aliment::class,'choice_label'=>'Nom'])
+        ->add('Midi',EntityType::class,['class'=>Aliment::class,'choice_label'=>'Nom'])
+        ->add('Dinner',EntityType::class,['class'=>Aliment::class,'choice_label'=>'Nom'])
+            ->add('CalCons',HiddenType::class, [
+
+                    'data' => $defaultCalCons]
+                )
+
+        ->add('Date')
+        ->add('objectif', EntityType::class,['class' => Objectif::class, 'choice_label' => 'id' ])
 
 
         ;

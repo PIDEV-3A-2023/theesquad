@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Aliment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -16,6 +18,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class AlimentRepository extends ServiceEntityRepository
 {
+
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Aliment::class);
@@ -49,21 +53,26 @@ class AlimentRepository extends ServiceEntityRepository
         return $qb->getResult();
     }
 
-//    /**
+// /**
 //     * @return Aliment[] Returns an array of Aliment objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findbyname( $name)
+    {
+        $queryBuilder = $this->createQueryBuilder('a')
 
+        ->select('a.NbCal')
+
+            ->where('a.Nom = :name')
+            ->setParameter('name', $name);
+
+        $query = $queryBuilder->getQuery();
+
+        return $query->getSingleScalarResult();
+    }
 //    public function findOneBySomeField($value): ?Aliment
 //    {
 //        return $this->createQueryBuilder('a')
