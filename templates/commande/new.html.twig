@@ -24,6 +24,7 @@
 
         #commande_date{
             border : transparent;
+
         }
 
     </style>
@@ -72,9 +73,10 @@
                                         {{ form_errors(form.dateCommande) }}
                                     </div>
                                 {% endif %}
+                                <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Save') }}</button>
+
                             </div>
 
-                            <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Save') }}</button>
 
                             {# <a href="login.html" class="btn btn-primary btn-user btn-block">
                                     Register Account

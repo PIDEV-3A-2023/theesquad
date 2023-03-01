@@ -7,6 +7,7 @@ use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CommandeType extends AbstractType
 {
@@ -15,7 +16,12 @@ class CommandeType extends AbstractType
         $builder
             ->add('quantiteCommande')
             ->add('dateCommande')
-            ->add('etatCommande');
+            ->add('etatCommande')
+            ->add('produits', EntityType::class, [
+                'class' => Produit::class,
+                'choice_label' => 'nom',
+                'multiple' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -3,11 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Commande;
+use App\Entity\Produit;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('/commande')]
@@ -19,6 +22,51 @@ class CommandeController extends AbstractController
         return $this->render('commande/index.html.twig', [
             'commandes' => $commandeRepository->findAll(),
         ]);
+    }
+
+
+    #[Route('/panierAffichage', name: 'affichage_panier_front')]
+    public function indexFront(SessionInterface $session, ProduitRepository $produitRepository)
+    {
+        $panier = $session->get("panier", []);
+
+        if (!is_array($panier)) {
+            $dataPanier = [];
+            $total = 0;
+        } else {
+            // On "fabrique" les données
+            $dataPanier = [];
+            $total = 0;
+
+            foreach ($panier as $id => $quantite) {
+                $produit = $produitRepository->find($id);
+                $dataPanier[] = [
+                    "produit" => $produit,
+                    "quantite" => $quantite
+                ];
+                $total += $produit->getPrix() * $quantite;
+            }
+        }
+
+        return $this->render('commande/Panier.html.twig', compact("dataPanier", "total"));
+    }
+
+
+    /**
+     * @Route ("/add/{id}",name="add")
+     * @return void
+     */
+    public function add(Produit $produit,SessionInterface $session)
+    {
+        //on récupere le panier actuel
+        $id=$produit->getId();
+        $panier=$session->get("panier",[]);
+        if(!empty($panier[$id])){
+            $panier[$id]++;}
+
+        // on sauvgarde dans la session
+        $session->set("panier",$panier);
+        return $this->redirectToRoute("affichage_panier_front");
     }
 
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]

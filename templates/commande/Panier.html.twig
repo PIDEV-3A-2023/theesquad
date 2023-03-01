@@ -1,0 +1,40 @@
+{% extends 'baseFronthtml.twig' %}
+
+{% block title %}Mon Panier
+{% endblock %}
+
+{% block body %}
+    <main id="main" class="main">
+            <div class="alert alert-danger" role="alert">
+            </div>
+        <div class="pagetitle">
+            <h1>Mon Panier</h1>
+        </div>
+
+        <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">List produits</h5>
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Produit</th>
+                                    <th scope="col">Prix</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Quantite</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                                </thead>
+
+                            </table>
+                            {{ dump() }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

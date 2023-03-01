@@ -7,8 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 #[ORM\Entity(repositoryClass: CommandeRepository::class)]
 class Commande
@@ -18,36 +16,25 @@ class Commande
     #[ORM\Column]
     private ?int $id = null;
 
-
-
-    /**
-     * @Assert\NotBlank
-     * @Assert\Type(type="numeric")
-     * @Assert\GreaterThan(value=0, message="Le prix doit être supérieur à {{ compared_value }}.")
-     */
     #[ORM\Column]
     private ?int $quantiteCommande = null;
 
-
-
-    #[Assert\GreaterThan("today", message:"The tarifhoraire must not be in the past.")]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateCommande = null;
 
-
-
-    /**
-     * @Assert\Choice(choices={"disponible", "non disponible"}, message="L'état de la commande doit être 'disponible' ou 'non disponible'")
-     */
     #[ORM\Column(length: 255)]
     private ?string $etatCommande = null;
 
     #[ORM\ManyToMany(targetEntity: Produit::class, mappedBy: 'commande')]
     private Collection $commande;
 
+    #[ORM\ManyToMany(targetEntity: Produit::class)]
+    private Collection $produits;
+
     public function __construct()
     {
         $this->commande = new ArrayCollection();
+        $this->produits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -117,4 +104,29 @@ class Commande
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Produit>
+     */
+    public function getProduits(): Collection
+    {
+        return $this->produits;
+    }
+
+    public function addProduit(Produit $produit): self
+    {
+        if (!$this->produits->contains($produit)) {
+            $this->produits->add($produit);
+        }
+
+        return $this;
+    }
+
+    public function removeProduit(Produit $produit): self
+    {
+        $this->produits->removeElement($produit);
+
+        return $this;
+    }
+
 }

@@ -22,6 +22,7 @@ class Produit
     /**
      * @Assert\NotBlank(message="Le nom ne peut pas être vide")
      * @Assert\Length(max=255, maxMessage="Le nom ne peut pas dépasser {{ limit }} caractères")
+     * * @Assert\Regex(pattern="/^[a-zA-Z]+$/", message="Le champ name ne doit contenir que des lettres alphabétiques.")
      */
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
