@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Coach;
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -63,6 +65,11 @@ class RegistrationCoachFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            ->add('captcha', Recaptcha3Type::class, [
+                'constraints' => new Recaptcha3(),
+                'action_name' => 'registerCoach',
+
             ])
         ;
     }

@@ -2,6 +2,19 @@
 
 {% block body %}
 
+    <script src="https://www.google.com/recaptcha/api.js?render=6Le3r7skAAAAAOEuT2bWAY6BQKXLT4_S2k84EZa8"></script>
+
+    <script>
+        function onClick(e) {
+            e.preventDefault();
+            grecaptcha.ready(function() {
+                grecaptcha.execute('6Le3r7skAAAAAOEuT2bWAY6BQKXLT4_S2k84EZa8', {action: 'submit'}).then(function(token) {
+                    // Add your logic to submit to your backend server here.
+                });
+            });
+        }
+    </script>
+
     <div class="bg-gradient-primary">
         <div class="container">
 
@@ -40,18 +53,17 @@
                                             </div>
 
                                             <input type="hidden" name="_csrf_token"
-                                                   value="{{ csrf_token('authenticate') }}"
-                                            >
+                                                   value="{{ csrf_token('authenticate') }}">
 
-                                            <div class="form-group">
-                                                <div class="custom-control custom-checkbox small">
-                                                    <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                    <label class="custom-control-label" for="customCheck">Remember
-                                                        Me</label>
+                                            <div class="flex justify-between items-center mb-6">
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer" name="_remember_me"/>
+                                                    <label class="form-check-label inline-block text-gray-800">Se rappeler de moi</label>
                                                 </div>
                                             </div>
 
-                                            {#
+
+                                                {#
                                             Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
                                             See https://symfony.com/doc/current/security/remember_me.html
 

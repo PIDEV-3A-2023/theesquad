@@ -71,6 +71,9 @@ class ClientController extends AbstractController
             }
 
             $doctrine->getManager()->flush();
+            toastr()
+                ->escapeHtml(false)
+                ->addSuccess('votre profil a été modifié avec succès.');
 
             return $this->redirectToRoute('app_client_dashboard', [], Response::HTTP_SEE_OTHER);
         }

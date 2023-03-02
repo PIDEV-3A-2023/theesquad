@@ -12,7 +12,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
-
+use Karser\Recaptcha3Bundle\Form\Recaptcha3Type;
+use Karser\Recaptcha3Bundle\Validator\Constraints\Recaptcha3;
 class RegistrationClientFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -36,6 +37,7 @@ class RegistrationClientFormType extends AbstractType
                     ]),
                 ],
             ])
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -53,7 +55,13 @@ class RegistrationClientFormType extends AbstractType
                     ]),
                 ],
             ])
+              ->add('captcha', Recaptcha3Type::class, [
+                  'constraints' => new Recaptcha3(),
+                  'action_name' => 'registerClient',
+
+              ])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
