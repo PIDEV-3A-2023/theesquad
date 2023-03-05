@@ -14,11 +14,11 @@
                 <div class="card-body p-0">
                     <!-- Nested Row within Card Body -->
                     <div class="row">
-                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                        <div class="col-lg-7">
+                        <div class="col-lg-5 d-none d-lg-block"></div>
+                        <div class="col-lg-12">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Create an Account Client!</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Créez un compte Client !</h1>
                                 </div>
                                 {{ form_start(registrationForm,{'attr':{'novalidate':'novalidate'}} ) }}
                                 <div class="user">
@@ -62,19 +62,19 @@
 
                                     <div class="form-group">
                                         {{ form_widget(registrationForm.agreeTerms) }}
-                                        <label>Agree to Terms and Conditions</label>
+                                        <label>Accepter les termes et conditions</label>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">Register</button>
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">S'inscrire</button>
 
                                 </div>
                                 {{ form_end(registrationForm) }}
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="{{ path('app_forgot_password_request') }}">Forgot Password?</a>
+                                    <a class="small" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="{{ path('app_login') }}">Already have an account? Login!</a>
+                                    <a class="small" href="{{ path('app_login') }}">Vous avez déjà un compte? Connexion!</a>
                                 </div>
                             </div>
                         </div>

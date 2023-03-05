@@ -56,22 +56,8 @@ class AdminController extends AbstractController
             'coaches' => $coachs,
         ]);
     }
-    #[Route('/rechercheCoachsV', name: 'app_admin_rechercheCoachsV')]
-    public function rechercheCoachsV(CoachRepository $coachRepository, Request  $request): Response
-    {
-        $data=$request->get('search');
-        $coach = $coachRepository->findBy(['nom'=>$data , 'isVerified' => true]);
-        return $this->render('admin/listCoachs.html.twig',
-            ["coaches" => $coach]);
-    }
-    #[Route('/rechercheCoachsNV', name: 'app_admin_rechercheCoachsNV')]
-    public function rechercheCoachsNV(CoachRepository $coachRepository, Request  $request): Response
-    {
-        $data=$request->get('search');
-        $coach = $coachRepository->findBy(['nom'=>$data , 'isVerified' => false]);
-        return $this->render('admin/listCoachsNV.html.twig',
-            ["coaches" => $coach]);
-    }
+
+
 
 
     #[Route('/listClientsV', name: 'app_admin_listclientV', methods: ['GET'])]
@@ -102,22 +88,7 @@ class AdminController extends AbstractController
         ]);
     }
 
-    #[Route('/rechercheClientsV', name: 'app_admin_rechercheClientsV')]
-    public function rechercheClientsV(ClientRepository $clientRepository, Request  $request): Response
-    {
-        $data=$request->get('search');
-        $client = $clientRepository->findBy(['nom'=>$data , 'isVerified' => true]);
-        return $this->render('admin/listClients.html.twig',
-            ["clients" => $client]);
-    }
-    #[Route('/rechercheClientsNV', name: 'app_admin_rechercheClientsNV')]
-    public function rechercheClientsNV(ClientRepository $clientRepository, Request  $request): Response
-    {
-        $data=$request->get('search');
-        $client = $clientRepository->findBy(['nom'=>$data , 'isVerified' => false]);
-        return $this->render('admin/listClientsNV.html.twig',
-            ["clients" => $client]);
-    }
+
 
     #[Route('/deleteClient/{id}', name: 'app_client_delete')]
     public function deleteClient(ManagerRegistry $doctrine, $id) {

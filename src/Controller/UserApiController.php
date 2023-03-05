@@ -43,12 +43,18 @@ class UserApiController extends AbstractController
         $client = new Client();
 
         $client->setEmail($email);
-        $client->setPassword(
-            $passwordHasher->hashPassword(
-                $client,
-                $password
-            )
+
+        if (!$password) {
+            return new Response('Password is required');
+        }
+
+        $pass = $passwordHasher->hashPassword(
+            $client,
+            $password
         );
+
+        $client->setPassword($pass);
+
         $client->setRoles(['ROLE_CLIENT']);
         $client->setDateNaissance($dateNaissance);
         $client->setNom($nom);
@@ -139,6 +145,90 @@ class UserApiController extends AbstractController
          }
     }
 
+    #[Route('/editProfilClient', name: 'app_editprofilclient')]
+    public function editProfilClient(Request $request, UserPasswordHasherInterface $passwordHasher){
+        $id = $request->query->get('id');
+        $email = $request->query->get('email');
+        $password = $request->query->get('password');
+        $dateNaissance = $request->query->get('dateNaissance');
+        $nom = $request->query->get('nom');
+        $prenom = $request->query->get('prenom');
+        $genre = $request->query->get('genre');
+        $adresse=$request->query->get('adresse');
+        $ville=$request->query->get('ville');
+        $taille=$request->query->get('taille');
+        $poids=$request->query->get('poids');
+        $telephone=$request->query->get('telephone');
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository(User::class)->find($id);
+        if($request->files->get('photo')!=null){
+            $file = $request->files->get('image');
+            $fileName= $file->getClientOriginalName();
+
+            $file->move($fileName);
+            $client->setImage(($fileName));
+
+        }
+        if($client){
+            $client->setEmail($email);
+            $client->setPassword( $passwordHasher->hashPassword(
+                $client,
+                $password
+            ));
+            $client->setDateNaissance($dateNaissance);
+            $client->setNom($nom);
+            $client->setPrenom($prenom);
+            $client->setGenre($genre);
+            $client->setAdresse($adresse);
+            $client->setVille($ville);
+            $client->setTaille($taille);
+            $client->setPoids($poids);
+
+
+            $client->setTelephone($telephone);
+            $em->persist($client);
+            $em->flush();
+            return new JsonResponse('Client updated', 200);
+        }else{
+            return new   Response('Client not found', 404);
+        }
+    }
+    #[Route('/editProfilCoach', name: 'app_editprofilcoach')]
+    public function editProfilCoach(Request $request, UserPasswordHasherInterface $passwordHasher){
+        $id = $request->query->get('id');
+        $email = $request->query->get('email');
+        $password = $request->query->get('password');
+        $dateNaissance = $request->query->get('dateNaissance');
+        $nom = $request->query->get('nom');
+        $prenom = $request->query->get('prenom');
+        $diplome=$request->query->get('diplome');
+        $em = $this->getDoctrine()->getManager();
+        $coach = $em->getRepository(User::class)->find($id);
+        if($request->files->get('photo')!=null){
+            $file = $request->files->get('image');
+            $fileName= $file->getClientOriginalName();
+
+            $file->move($fileName);
+            $coach->setImage(($fileName));
+
+        }
+        if($coach){
+            $coach->setEmail($email);
+            $coach->setPassword( $passwordHasher->hashPassword(
+                $coach,
+                $password
+            ));
+            $coach->setDateNaissance($dateNaissance);
+            $coach->setNom($nom);
+            $coach->setPrenom($prenom);
+            $coach->setDiplome($diplome);
+            $em->persist($coach);
+            $em->flush();
+            return new JsonResponse('Coach updated', 200);
+        }else{
+            return new   Response('Coach not found', 404);
+        }
+    }
 
 
 
