@@ -5,25 +5,50 @@ namespace App\Controller;
 use App\Entity\CategorieProduit;
 use App\Form\CategorieProduitType;
 use App\Repository\CategorieProduitRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/categorie/produit')]
 class CategorieProduitController extends AbstractController
 {
-    #[Route('/', name: 'app_categorie_produit_index', methods: ['GET'])]
-    public function index(CategorieProduitRepository $categorieProduitRepository): Response
+
+
+
+    #[Route('/newAdd', name: 'addingG', methods: ['POST'])]
+    public function add(Request $request,SerializerInterface $serializer, EntityManagerInterface $em): Response
     {
+        $content=$request->getContent();
+        $data=$serializer->deserialize($content,CategorieProduit::class,'json');
+        $em->persist($data);
+        $em->flush();
+        return new Response('OKK');
+    }
+
+
+    #[Route('/', name: 'app_categorie_produit_index', methods: ['GET'])]
+    public function index(CategorieProduitRepository $categorieProduitRepository,SerializerInterface $serializerInterface): Response
+    {
+
+        $categorie_produit=$categorieProduitRepository->findAll();
+
+        $json=$serializerInterface->serialize($categorie_produit,'json',['groups'=>'categorieproduits']);
+        $json1=json_encode($categorie_produit);
+
+
         return $this->render('categorie_produit/index.html.twig', [
             'categorie_produits' => $categorieProduitRepository->findAll(),
         ]);
+
     }
 
     #[Route('/new', name: 'app_categorie_produit_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategorieProduitRepository $categorieProduitRepository): Response
+    public function new(Request $request, CategorieProduitRepository $categorieProduitRepository,SerializerInterface $serializer): Response
     {
+
         $categorieProduit = new CategorieProduit();
         $form = $this->createForm(CategorieProduitType::class, $categorieProduit);
         $form->handleRequest($request);

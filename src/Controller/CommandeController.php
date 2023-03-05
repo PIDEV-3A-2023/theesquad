@@ -24,8 +24,7 @@ class CommandeController extends AbstractController
         ]);
     }
 
-
-    #[Route('/panierAffichage', name: 'affichage_panier_front')]
+    #[Route('/panierAffichage/', name: 'affichage_panier_front')]
     public function indexFront(SessionInterface $session, ProduitRepository $produitRepository)
     {
         $panier = $session->get("panier", []);
@@ -51,6 +50,15 @@ class CommandeController extends AbstractController
         return $this->render('commande/Panier.html.twig', compact("dataPanier", "total"));
     }
 
+    #[Route('/deletePanier/',name:'deletepanier')]
+    public function deletePanier ( SessionInterface $session)
+    {
+        // On récupère le panier actuel
+        $panier = $session->set("panier",[]);
+        return $this->redirectToRoute("affichage_panier_front");
+    }
+
+
 
     /**
      * @Route ("/add/{id}",name="add")
@@ -59,15 +67,63 @@ class CommandeController extends AbstractController
     public function add(Produit $produit,SessionInterface $session)
     {
         //on récupere le panier actuel
+        $panier = $session->get("panier", []);
         $id=$produit->getId();
-        $panier=$session->get("panier",[]);
-        if(!empty($panier[$id])){
-            $panier[$id]++;}
+        if(!empty ($panier[$id])) {
+            $panier[$id]++;
+        }else {
+            $panier[$id] = 1;
+        }
+
+        dump($panier);
+        dump($session->get('panier'));
 
         // on sauvgarde dans la session
         $session->set("panier",$panier);
         return $this->redirectToRoute("affichage_panier_front");
     }
+    /**
+     * @Route("/remove/{id}", name="remove")
+     */
+    public function remove(Produit $produit, SessionInterface $session)
+    {
+        // On récupère le panier actuel
+        $panier = $session->get("panier", []);
+        $id = $produit->getId();
+
+        if(!empty($panier[$id])) {
+            if ($panier[$id] > 1) {
+                $panier[$id]--;
+            } else {
+                unset($panier[$id]);
+            }
+        }
+        // On sauvegarde dans la session
+        $session->set("panier", $panier);
+
+        return $this->redirectToRoute("affichage_panier_front");
+    }
+    /**
+     * @Route("/deleteCommande/{id}", name="deleteCommande")
+     */
+    public function deleteCommande (Produit $produit, SessionInterface $session)
+    {
+        // On récupère le panier actuel
+        $panier = $session->get("panier", []);
+        $id = $produit->getId();
+
+        if(!empty($panier[$id])) {
+                unset($panier[$id]);
+        }
+        // On sauvegarde dans la session
+        $session->set("panier", $panier);
+
+        return $this->redirectToRoute("affichage_panier_front");
+    }
+
+
+
+
 
     #[Route('/new', name: 'app_commande_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CommandeRepository $commandeRepository): Response

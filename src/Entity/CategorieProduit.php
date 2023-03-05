@@ -7,26 +7,32 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 
 #[ORM\Entity(repositoryClass: CategorieProduitRepository::class)]
 class CategorieProduit
 {
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    /**
+     * @Groups("categorieproduits")
+     */
+    public ?int $id = null;
 
     /**
      * @Assert\NotBlank(message="Le nom ne peut pas être vide")
      * @Assert\Length(max=255, maxMessage="Le nom ne peut pas dépasser {{ limit }} caractères")
-     *  @Assert\Regex(
+     * @Assert\Regex(
      *     pattern="/^[a-zA-Z]+$/",
      *     message="Le nom ne doit contenir que des lettres"
      * )
+     * @Groups("categorieproduits")
      */
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    public ?string $nom = null;
 
     /**
      * @Assert\NotBlank(message="La description ne peut pas être vide")
@@ -35,9 +41,11 @@ class CategorieProduit
      *     maxMessage="La description ne peut pas dépasser {{ limit }} caractères",
      *     min=4,
      *     minMessage="La description doit etre supperiere a 4 caractére ")
+     *@Groups("categorieproduits")
+
      */
     #[ORM\Column(length: 255)]
-    private ?string $description = null;
+    public ?string $description = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Produit::class)]
     private Collection $products;

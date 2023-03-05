@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategorieProduitRepository;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 use App\Entity\Produit;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+
 
 
 
@@ -29,12 +32,16 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/frontAffichage', name: 'affichage_produit_front')]
-    public function indexFront(ProduitRepository $produitRepository): Response
-    {
-        // return $this->render('evenement/Front.html.twig', []);
-        $produit=$produitRepository->findAll();
-        return $this->render('produit/Front.html.twig',['produit'=>$produit]);
+
+    #[Route('/frontAffichage', name: 'affichage_produit_front', methods: ['GET']
+    )]
+    public function indexFront( ProduitRepository $produitRepository,Request $request,PaginatorInterface $paginator): Response    {
+        $produit = $produitRepository->findAll();
+        $produit  = $paginator->paginate(
+            $produit  ,
+            $request->query->getInt('page', 1),
+            3
+        );        return $this->render('produit/Front.html.twig',['produit'=>$produit]);
     }
 
 

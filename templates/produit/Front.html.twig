@@ -19,7 +19,8 @@
                                 </div>
                                     <div class="full" >
                                         <button  style="background-color:#30458B; border-color:#daeee5; color:#daeee5" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{ p.id }}">Détails</button>
-                                            <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{ path("add",{id:p.id}) }}">Commander</a>
+                                            <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path("add", {id: p.id})}}">Commander</a>
+
 
                                     </div>
                             </div>
@@ -46,5 +47,7 @@
     </div>
 </div>
 {% endfor %}
+<div class="align-center"> {{ knp_pagination_render(produit) }}</div>
+
 
         {% endblock %}
