@@ -85,7 +85,8 @@ class __TwigTemplate_0c943f7afe919ecfe473e04382d122b7 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
         // line 6
-        echo "        <div style=\"display:flex;\">
+        echo "  
+        <div style=\"display:flex;\">
         <div class=\"col-lg-8\">
             <h1>Exercice</h1>
         </div>
@@ -93,24 +94,24 @@ class __TwigTemplate_0c943f7afe919ecfe473e04382d122b7 extends Template
             <a style=\"justify-content: center; display: inline-flex; width: 90px!important; height: 35px; background-color: #4c71de;
                     color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;\"
                     href=\"";
-        // line 13
+        // line 14
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_evenement_index");
         echo "\">Retourner</a>
 
             <a style=\"justify-content: center; display: inline-flex; width: 90px!important; height: 35px; background-color: #4c71de;
                     color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;\"
                     href=\"";
-        // line 17
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_exercice_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 17, $this->source); })()), "id", [], "any", false, false, false, 17)]), "html", null, true);
+        // line 18
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_exercice_edit", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 18, $this->source); })()), "id", [], "any", false, false, false, 18)]), "html", null, true);
         echo "\">Modifier</a>
 
             <form style=\"width: 4px;margin: 0px 3px 0px 3px; width: 80px!important;\" method=\"post\" action=\"";
-        // line 19
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_exercice_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 19, $this->source); })()), "id", [], "any", false, false, false, 19)]), "html", null, true);
+        // line 20
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_exercice_delete", ["id" => twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 20, $this->source); })()), "id", [], "any", false, false, false, 20)]), "html", null, true);
         echo "\" onsubmit=\"return confirm('Etes vous sur à propos la suppression de cet élément?');\">
                 <input type=\"hidden\" name=\"_token\" value=\"";
-        // line 20
-        echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 20, $this->source); })()), "id", [], "any", false, false, false, 20))), "html", null, true);
+        // line 21
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken(("delete" . twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 21, $this->source); })()), "id", [], "any", false, false, false, 21))), "html", null, true);
         echo "\">
                 <button style=\"justify-content: center; display: inline-flex; width: 90px!important; height: 35px;
                 background-color: #fd3838; color: white; padding-top: 5px; border-radius: 10px;\"  
@@ -124,36 +125,36 @@ class __TwigTemplate_0c943f7afe919ecfe473e04382d122b7 extends Template
             <tr>
                 <th>Id</th>
                 <td>";
-        // line 32
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 32, $this->source); })()), "id", [], "any", false, false, false, 32), "html", null, true);
+        // line 33
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 33, $this->source); })()), "id", [], "any", false, false, false, 33), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Nom</th>
                 <td>";
-        // line 36
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 36, $this->source); })()), "nom", [], "any", false, false, false, 36), "html", null, true);
+        // line 37
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 37, $this->source); })()), "nom", [], "any", false, false, false, 37), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Description</th>
                 <td>";
-        // line 40
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 40, $this->source); })()), "description", [], "any", false, false, false, 40), "html", null, true);
+        // line 41
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 41, $this->source); })()), "description", [], "any", false, false, false, 41), "html", null, true);
         echo "</td>
             </tr>
             <tr>
                 <th>Duree</th>
                 <td>";
-        // line 44
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 44, $this->source); })()), "duree", [], "any", false, false, false, 44), "html", null, true);
+        // line 45
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 45, $this->source); })()), "duree", [], "any", false, false, false, 45), "html", null, true);
         echo "</td>
             </tr>
              <tr>
                 <th>Evenement</th>
                 <td>";
-        // line 48
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 48, $this->source); })()), "evenement", [], "any", false, false, false, 48), "nom", [], "any", false, false, false, 48), "html", null, true);
+        // line 49
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 49, $this->source); })()), "evenement", [], "any", false, false, false, 49), "nom", [], "any", false, false, false, 49), "html", null, true);
         echo "</td>
             </tr>
 
@@ -161,8 +162,8 @@ class __TwigTemplate_0c943f7afe919ecfe473e04382d122b7 extends Template
                 <th>image</th>
                 <td>
                 <img  src=\"";
-        // line 54
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("Back/img/" . twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 54, $this->source); })()), "image", [], "any", false, false, false, 54))), "html", null, true);
+        // line 55
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("Back/img/" . twig_get_attribute($this->env, $this->source, (isset($context["exercice"]) || array_key_exists("exercice", $context) ? $context["exercice"] : (function () { throw new RuntimeError('Variable "exercice" does not exist.', 55, $this->source); })()), "image", [], "any", false, false, false, 55))), "html", null, true);
         echo "\" alt=\"\" width=\"80\" height=\"80\" />
                 </td>
             </tr>
@@ -192,7 +193,7 @@ class __TwigTemplate_0c943f7afe919ecfe473e04382d122b7 extends Template
 
     public function getDebugInfo()
     {
-        return array (  165 => 54,  156 => 48,  149 => 44,  142 => 40,  135 => 36,  128 => 32,  113 => 20,  109 => 19,  104 => 17,  97 => 13,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  166 => 55,  157 => 49,  150 => 45,  143 => 41,  136 => 37,  129 => 33,  114 => 21,  110 => 20,  105 => 18,  98 => 14,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -202,6 +203,7 @@ class __TwigTemplate_0c943f7afe919ecfe473e04382d122b7 extends Template
 {% block title %}Exercice{% endblock %}
 
 {% block body %}
+  
         <div style=\"display:flex;\">
         <div class=\"col-lg-8\">
             <h1>Exercice</h1>

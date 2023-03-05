@@ -327,6 +327,17 @@ class Evenement extends \App\Entity\Evenement implements \Doctrine\ORM\Proxy\Pro
     /**
      * {@inheritDoc}
      */
+    public function joursRestants(): int
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'joursRestants', []);
+
+        return parent::joursRestants();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getExercices(): \Doctrine\Common\Collections\Collection
     {
 

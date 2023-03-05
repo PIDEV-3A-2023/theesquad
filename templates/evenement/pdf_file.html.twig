@@ -1,0 +1,151 @@
+{# 
+                       <table border=1>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nom</th>
+                                            <th>Type</th>
+                                            <th>Date</th>
+                                            <th>Adresse</th>
+                                        </tr>
+                                                                    
+                                        {% for evenement in evenements %}
+                                            <tr>
+                                                <td>{{ evenement.id }}</td>
+                                                <td>{{ evenement.nom }}</td>
+                                                <td>{{ evenement.type }}</td>
+                                                <td>{{ evenement.date ? evenement.date|date('Y-m-d ') : '' }}</td>
+                                                <td>{{ evenement.adresse }}</td>
+                                            </tr>
+                                            {% else %}
+                                            <tr>
+                                                <td colspan="6">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+                                </table> #}
+
+
+
+
+
+
+
+
+{% block javascripts %}
+   
+{% endblock %}
+
+{% block body %}
+<style>
+table {
+  border-color: #4c71de;
+  line-height: 2;
+}
+img {
+    position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: auto;
+    }
+title {
+        color: #4c71de;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+</style>
+ <!-- Begin Page Content -->
+  <img  src="data:image/jpeg;base64,{{ logobase64 }}" />
+  <br></br>
+  <br></br>
+  <br></br>
+
+                <div class="container-fluid">
+
+                    
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 ;style=text-align: center; color: #4c71de;">
+                    <h2 style="text-align: center; color: #4c71de;">Evenements disponibles</h2>
+                        </div>
+                        <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered  border: 2px solid blue; " border=2 id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Id</th>
+                                    <th style="text-align:center;">Nom</th>
+                                    <th style="text-align:center;">Type</th>
+                                    <th style="text-align:center;">Date</th>
+                                    <th style="text-align:center;">Adresse</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for evenement in evenements %}
+                                <tr>
+                                    <td style="text-align:center;">{{ evenement.id }}</td>
+                                    <td style="text-align:center;">{{ evenement.nom }}</td>
+                                    <td style="text-align:center;">{{ evenement.type }}</td>
+                                    <td style="text-align:center;">{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+                                    <td style="text-align:center;">{{ evenement.adresse }}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="5" style="text-align:center;">No records found</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                        </div>
+
+                    </div>
+
+                </div>
+              
+
+
+
+    
+{% endblock %}
+
+
+
+
+{# <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Evenements disponibles</title>
+    </head>
+    <body>
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                        <th>Adresse</th>
+                    </tr>
+                </thead>
+                <tbody>                                     
+                    {% for evenement in evenements %}
+                        <tr>
+                            <td>{{ evenement.id }}</td>
+                            <td>{{ evenement.nom }}</td>
+                            <td>{{ evenement.type }}</td>
+                            <td>{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+                            <td>{{ evenement.adresse }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>  #}

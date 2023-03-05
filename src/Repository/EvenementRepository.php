@@ -38,6 +38,18 @@ class EvenementRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    function searchQB($adresse)
+    {
+       return $this->createQueryBuilder('ev')
+       ->where('ev.adresse LIKE ?1')
+       ->setParameter('1','%'.$adresse.'%')->getQuery()->getResult();
+    }
+    
+    function orderByDateQB()
+    {
+       $req=$this->createQueryBuilder('ev')->orderBy('ev.date','DESC');
+       return $req->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Evenement[] Returns an array of Evenement objects

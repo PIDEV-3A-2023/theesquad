@@ -240,20 +240,9 @@ class __TwigTemplate_9ae5cc32b60f6751b623b2ef8a2db992 extends Template
                         <i class=\"fa fa-bars\"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class=\"d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search\">
-                        <div class=\"input-group\">
-                            <input type=\"text\" class=\"form-control bg-light border-0 small\" placeholder=\"Search for...\"
-                                aria-label=\"Search\" aria-describedby=\"basic-addon2\">
-                            <div class=\"input-group-append\">
-                                <button class=\"btn btn-primary\" type=\"button\">
-                                    <i class=\"fas fa-search fa-sm\"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
+                    ";
+        // line 218
+        echo "
                     <!-- Topbar Navbar -->
                     <ul class=\"navbar-nav ml-auto\">
 
@@ -658,7 +647,7 @@ class __TwigTemplate_9ae5cc32b60f6751b623b2ef8a2db992 extends Template
 
     public function getDebugInfo()
     {
-        return array (  639 => 401,  629 => 400,  617 => 40,  613 => 39,  607 => 36,  601 => 33,  595 => 30,  589 => 27,  585 => 26,  582 => 25,  572 => 24,  560 => 21,  551 => 15,  548 => 14,  538 => 13,  519 => 10,  457 => 403,  455 => 400,  423 => 371,  398 => 349,  383 => 337,  368 => 325,  353 => 313,  220 => 183,  202 => 168,  198 => 167,  184 => 155,  119 => 88,  71 => 42,  69 => 24,  66 => 23,  63 => 13,  58 => 10,  47 => 1,);
+        return array (  628 => 401,  618 => 400,  606 => 40,  602 => 39,  596 => 36,  590 => 33,  584 => 30,  578 => 27,  574 => 26,  571 => 25,  561 => 24,  549 => 21,  540 => 15,  537 => 14,  527 => 13,  508 => 10,  446 => 403,  444 => 400,  412 => 371,  387 => 349,  372 => 337,  357 => 325,  342 => 313,  245 => 218,  220 => 183,  202 => 168,  198 => 167,  184 => 155,  119 => 88,  71 => 42,  69 => 24,  66 => 23,  63 => 13,  58 => 10,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -867,7 +856,7 @@ class __TwigTemplate_9ae5cc32b60f6751b623b2ef8a2db992 extends Template
                         <i class=\"fa fa-bars\"></i>
                     </button>
 
-                    <!-- Topbar Search -->
+                    {# <!-- Topbar Search -->
                     <form
                         class=\"d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search\">
                         <div class=\"input-group\">
@@ -879,7 +868,7 @@ class __TwigTemplate_9ae5cc32b60f6751b623b2ef8a2db992 extends Template
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> #}
 
                     <!-- Topbar Navbar -->
                     <ul class=\"navbar-nav ml-auto\">

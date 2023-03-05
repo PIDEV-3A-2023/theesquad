@@ -189,25 +189,26 @@ class __TwigTemplate_68160353b5397749b025e2d4d2417533 extends Template
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 74, $this->source); })()), "adresse", [], "any", false, false, false, 74), 'widget', ["attr" => ["class" => "form-control form-control-user", "placeholder" => "Adresse"]]);
         echo "   
                                 </div>
-
+                                
+                                ";
+        // line 77
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 77, $this->source); })()), "description", [], "any", false, false, false, 77), 'widget', ["attr" => ["class" => "form-control form-control-user", "placeholder" => "Description"]]);
+        echo "   
                                  <div class=\"form-group\">
                                   ";
-        // line 78
-        if ( !twig_test_empty($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 78, $this->source); })()), "description", [], "any", false, false, false, 78), 'errors'))) {
-            // line 79
+        // line 79
+        if ( !twig_test_empty($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 79, $this->source); })()), "description", [], "any", false, false, false, 79), 'errors'))) {
+            // line 80
             echo "                                                    <div class=\"alert alert-danger\" >
                                                     ";
-            // line 80
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 80, $this->source); })()), "description", [], "any", false, false, false, 80), 'errors');
+            // line 81
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 81, $this->source); })()), "description", [], "any", false, false, false, 81), 'errors');
             echo "
                                                 </div>
                                                 ";
         }
-        // line 83
-        echo "                                ";
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 83, $this->source); })()), "description", [], "any", false, false, false, 83), 'widget', ["attr" => ["class" => "form-control form-control-user", "placeholder" => "Description"]]);
-        echo "   
-                                </div>
+        // line 84
+        echo "                                </div>
 
                                 <div class=\"form-group\" style=\"display : flex ;\">
                                 <div style=\"margin-top: 6px;\">
@@ -295,7 +296,7 @@ class __TwigTemplate_68160353b5397749b025e2d4d2417533 extends Template
 
     public function getDebugInfo()
     {
-        return array (  275 => 121,  272 => 120,  260 => 110,  254 => 107,  250 => 105,  245 => 100,  240 => 98,  236 => 96,  230 => 93,  227 => 92,  225 => 91,  221 => 90,  216 => 88,  207 => 83,  201 => 80,  198 => 79,  196 => 78,  188 => 74,  182 => 71,  179 => 70,  177 => 69,  165 => 61,  159 => 58,  156 => 57,  154 => 56,  146 => 52,  140 => 49,  137 => 48,  135 => 47,  128 => 43,  115 => 32,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  276 => 121,  273 => 120,  261 => 110,  255 => 107,  251 => 105,  246 => 100,  241 => 98,  237 => 96,  231 => 93,  228 => 92,  226 => 91,  222 => 90,  217 => 88,  211 => 84,  205 => 81,  202 => 80,  200 => 79,  195 => 77,  188 => 74,  182 => 71,  179 => 70,  177 => 69,  165 => 61,  159 => 58,  156 => 57,  154 => 56,  146 => 52,  140 => 49,  137 => 48,  135 => 47,  128 => 43,  115 => 32,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -375,14 +376,14 @@ class __TwigTemplate_68160353b5397749b025e2d4d2417533 extends Template
                                                 {% endif %}
                                 {{ form_widget(form.adresse,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Adresse'} }) }}   
                                 </div>
-
+                                
+                                {{ form_widget(form.description,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'} }) }}   
                                  <div class=\"form-group\">
                                   {% if form_errors(form.description) is not empty %}
                                                     <div class=\"alert alert-danger\" >
                                                     {{ form_errors(form.description) }}
                                                 </div>
                                                 {% endif %}
-                                {{ form_widget(form.description,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'} }) }}   
                                 </div>
 
                                 <div class=\"form-group\" style=\"display : flex ;\">

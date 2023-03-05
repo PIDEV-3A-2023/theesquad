@@ -32,7 +32,7 @@ class EvenementType extends AbstractType
 
             ])
             ->add('date' , DateType::class, [
-                'required' => true,
+                //'required' => true,
                 'widget' => 'single_text',
                 'constraints' => [
                  //  new DateTime(), // Vérifie que la valeur est une date valide
@@ -43,12 +43,24 @@ class EvenementType extends AbstractType
             ->add('adresse')
             ->add('description')
             ->add('image',FileType::class, [
+                'label' => 'image',
+                'mapped' => false,
+                'required' => false,
+                // 'constraints' => [
+                //     new NotNull(),
+                //  /*   new Image([
+                //         'maxSize' => '5M',
+                //         'mimeTypes' => ['image/jpeg', 'image/png', 'image/jpg'],
+                //     ]),*/
+                // ],
                 'constraints' => [
-                  //  new NotNull(),
-                 /*   new Image([
-                        'maxSize' => '5M',
-                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/jpg'],
-                    ]),*/
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ])
                 ],
             ])
         ;

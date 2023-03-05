@@ -22,13 +22,24 @@ class ExerciceType extends AbstractType
             ->add('duree')
             ->add('evenement',EntityType::class,['class'=>Evenement::class,'choice_label'=>'nom'])
             ->add('image', FileType::class, [
-                'required' => true,
+                'label' => 'image',
+                'mapped' => false,
+                'required' => false,
+                // 'constraints' => [
+                //    // new NotNull()
+                //  /*   new Image([
+                //         'maxSize' => '5M',
+                //         'mimeTypes' => ['image/jpeg', 'image/png', 'image/jpg'],
+                //     ]),*/
+                // ],
                 'constraints' => [
-                   // new NotNull()
-                 /*   new Image([
-                        'maxSize' => '5M',
-                        'mimeTypes' => ['image/jpeg', 'image/png', 'image/jpg'],
-                    ]),*/
+                    new File([
+                        'maxSize' => '2048k',
+                        'mimeTypes' => [
+                            'image/*',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid image',
+                    ])
                 ],
             ])
         ;

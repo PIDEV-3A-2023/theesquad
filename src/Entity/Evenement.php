@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\EvenementRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -35,20 +36,20 @@ class Evenement
     private ?string $adresse = null;
 
     
-   #[Assert\NotNull(message: "vous devez mettre une image de l'événement!!!")]
-   #[Assert\File(
-         maxSize: "3M",
-         mimeTypes : ["image/jpg", "image/png"],
-         mimeTypesMessage : "Veuillez choisir un fichier image valide (JPG, PNG)."
-     )]
+//    #[Assert\NotNull(message: "vous devez mettre une image de l'événement!!!")]
+//    #[Assert\File(
+//          maxSize: "3M",
+//          mimeTypes : ["image/jpg", "image/png"],
+//          mimeTypesMessage : "Veuillez choisir un fichier image valide (JPG, PNG)."
+//      )]
      #[ORM\Column(length: 255)]
      private ?string $image = null;
 
    #[Assert\NotBlank(message: "vous devez mettre une description de l'événement!!!")]
     #[Assert\Length([
-        'min' =>20,
-        'max' => 100,
-        'minMessage' => 'la description doit contenir au moins {{ limit }} caractères',
+         'min' =>20,
+        'max' => 200,
+         'minMessage' => 'la description doit contenir au moins {{ limit }} caractères',
         'maxMessage' => 'la description doit contenir au max {{ limit }} caractères',
     ])]
     #[ORM\Column(length: 255)]
@@ -138,6 +139,30 @@ class Evenement
 
         return $this;
     }
+
+
+    ////fonction qui permet de calculer le nombre de jours restants entre la date de l'evenement et la date actuelle
+    public function joursRestants(): int
+    {
+        // Récupérer la date de l'attribut "date" de l'événement
+        $date = $this->getDate();
+    
+        // Créer un objet DateTime pour la date actuelle
+        $aujourdhui = new DateTime();
+    
+        // Calculer la différence entre la date stockée et la date actuelle
+        $difference = $date->diff($aujourdhui);
+    
+        // Extraire le nombre de jours restants
+        $joursRestants = $difference->days;
+    
+        return $joursRestants;
+        
+    }
+
+
+
+
 
     /**
      * @return Collection<int, Exercice>

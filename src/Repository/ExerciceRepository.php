@@ -38,6 +38,17 @@ class ExerciceRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    function searchQB($nom)
+    {
+       return $this->createQueryBuilder('ex')
+       ->where('ex.nom LIKE ?1')
+       ->setParameter('1','%'.$nom.'%')->getQuery()->getResult();
+    }
+    function orderByNomQB()
+    {
+       $req=$this->createQueryBuilder('ex')->orderBy('ex.nom','DESC');
+       return $req->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Exercice[] Returns an array of Exercice objects
