@@ -1,0 +1,3 @@
+<?php //App%255CEntity%255CEvenement%2523getParticipations
+
+return [PHP_INT_MAX, []];

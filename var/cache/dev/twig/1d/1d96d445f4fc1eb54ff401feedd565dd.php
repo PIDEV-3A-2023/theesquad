@@ -82,7 +82,7 @@ class __TwigTemplate_2281246e0756e2e794c672e2db4f5f1f extends Template
                         <img  src=\"";
             // line 37
             echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("Back/img/" . twig_get_attribute($this->env, $this->source, $context["e"], "image", [], "any", false, false, false, 37))), "html", null, true);
-            echo "\" alt=\"\" width=\"400\" height=\"300\" />
+            echo "\" alt=\"\" width=\"400\" height=\"350\" />
                            ";
             // line 39
             echo "                        </div>
@@ -180,7 +180,7 @@ class __TwigTemplate_2281246e0756e2e794c672e2db4f5f1f extends Template
                   <div class=\"feature-post small-blog\">
                      <div class=\"col-md-5\">
                         <div class=\"feature-img\">
-                        <img  src=\"{{ asset('Back/img/' ~ e.image )  }}\" alt=\"\" width=\"400\" height=\"300\" />
+                        <img  src=\"{{ asset('Back/img/' ~ e.image )  }}\" alt=\"\" width=\"400\" height=\"350\" />
                            {# <img src=\"images/post2.png\" class=\"img-responsive\" alt=\"#\" /> #}
                         </div>
                      </div>
@@ -203,6 +203,6 @@ class __TwigTemplate_2281246e0756e2e794c672e2db4f5f1f extends Template
 
         {% endblock %}
 
-", "evenement/FrontEvenementExercices.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidev - Copie 2\\templates\\evenement\\FrontEvenementExercices.html.twig");
+", "evenement/FrontEvenementExercices.html.twig", "C:\\Users\\21692\\Downloads\\ProjetPidevErij\\ProjetPidev - Copie 2\\templates\\evenement\\FrontEvenementExercices.html.twig");
     }
 }

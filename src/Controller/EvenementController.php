@@ -5,6 +5,10 @@ namespace App\Controller;
 use App\Entity\Evenement;
 use App\Form\EvenementType;
 use App\Repository\EvenementRepository;
+use App\Entity\Participation;
+use App\Repository\ParticipationRespository;
+use App\Entity\User;
+use App\Repository\UserRespository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -128,34 +132,47 @@ public function index_pdf(EvenementRepository $evenementRepository, Request $req
         return $this->render('buttons.html.twig');
     }
 
-    // #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
-    // public function index(EvenementRepository $evenementRepository): Response
-    // {
-    //     return $this->render('evenement/index.html.twig', [
-    //         'evenements' => $evenementRepository->findAll(),
-    //     ]);
-    // }
-    
-
-
     #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
-    public function index(EvenementRepository $evenementRepository, Request $request, PaginatorInterface $paginator): Response
+    public function index(EvenementRepository $evenementRepository): Response
     {
-        $evenements = $evenementRepository->findAll();
-        $evenements = $paginator->paginate($evenements, $request->query->getInt('page', 1), 2);
-        return $this->render('evenement/index.html.twig', ['evenements' => $evenements]);
-    
+        return $this->render('evenement/index.html.twig', [
+            'evenements' => $evenementRepository->findAll(),
+        ]);
     }
+    
+
+////////pagination
+    // #[Route('/', name: 'app_evenement_index', methods: ['GET'])]
+    // public function index(EvenementRepository $evenementRepository, Request $request, PaginatorInterface $paginator): Response
+    // {
+    //     $evenements = $evenementRepository->findAll();
+    //     $evenements = $paginator->paginate($evenements, $request->query->getInt('page', 1), 2);
+    //     return $this->render('evenement/index.html.twig', ['evenements' => $evenements]);
+    
+    // }
 
     
 
 
       #[Route('/frontAffichageEvenement', name: 'affichage_evenement_front')]
-       public function indexFront(EvenementRepository $evenementRepository): Response
+       public function indexFront(ParticipationRespository $a ,EvenementRepository $evenementRepository): Response
         {
            //return $this->render('evenement/Front.html.twig', []);
          $evenement=$evenementRepository->findAll();
-          return $this->render('evenement/FrontEvenement.html.twig',['ev'=>$evenement]);
+
+        $Logged = false;
+            //$this->getUser()->getId()
+          if(!$Logged){
+            //$this->getUser()->getId()     ////////hedhy nhotha f l'integration
+            $check=$a->selectbyevent(3);///////////ena hata 3 houni id mtaa user statique(f blaset 3 twali $this)
+            return $this->render('evenement/FrontEvenement.html.twig', [
+                'ev' =>$evenement,'check' => $check,
+            ]);
+        }else{
+
+            return $this->render('evenement/FrontEvenement.html.twig',['ev'=>$evenement]);
+
+        }
        }
 
 
@@ -304,6 +321,45 @@ public function index_pdf(EvenementRepository $evenementRepository, Request $req
         ]);
     }
 
-
+    ////////fonction de la participation a un event
+#[Route('/participer/{id}', name: 'participer')]
+public function participer($id,Request $request,EvenementRepository $a): Response
+{          
     
+    //find event by his id
+    $rep=$this->getDoctrine()->getRepository(Evenement::class);
+    $event=$rep->find($id);
+    //find user by his id
+    $userRepository = $this->getDoctrine()->getRepository(User::class);
+    //$this->getUser()->getId()     ///////////////f l'integration nhot hedhy
+
+    $user = $userRepository->find(3); ////////////////ena tawa hata 3 comme id statique mtaa user 
+
+    $participation = new Participation();
+    $participation->setEvenement($event);
+      
+      $participation->setUser($user);
+      $em=$this->getDoctrine()->getManager();
+      $em->persist($participation);
+      $em->flush();
+
+    return $this->redirectToRoute('affichage_evenement_front');
+    
+
+
+  
+} 
+
+///////enlever la participation 
+#[Route('/imparticiper/{id}', name: 'imparticiper')]
+public function imparticiper($id,ParticipationRespository $b): Response
+{    
+    //find event by his id
+    $rep=$this->getDoctrine()->getRepository(Evenement::class);
+     $event=$rep->find($id);
+    //$this->getUser()->getId()    //////////hedhy nektebha fel integration 
+    
+    $b->delete($event,3);    //////////f blaset 3 twali $this
+    return $this->redirectToRoute('affichage_evenement_front');
+}
 }

@@ -67,10 +67,10 @@ class Evenement extends \App\Entity\Evenement implements \Doctrine\ORM\Proxy\Pro
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'date', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'image', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'exercices'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'date', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'image', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'participations', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'exercices'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'date', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'image', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'exercices'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'nom', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'type', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'date', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'adresse', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'image', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'description', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'participations', '' . "\0" . 'App\\Entity\\Evenement' . "\0" . 'exercices'];
     }
 
     /**
@@ -366,6 +366,39 @@ class Evenement extends \App\Entity\Evenement implements \Doctrine\ORM\Proxy\Pro
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeExercice', [$exercice]);
 
         return parent::removeExercice($exercice);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParticipations(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getParticipations', []);
+
+        return parent::getParticipations();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addParticipation(\App\Entity\Participation $participation): \App\Entity\Evenement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addParticipation', [$participation]);
+
+        return parent::addParticipation($participation);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeParticipation(\App\Entity\Participation $participation): \App\Entity\Evenement
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeParticipation', [$participation]);
+
+        return parent::removeParticipation($participation);
     }
 
 }

@@ -38,11 +38,22 @@ class EvenementRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    function searchQB($adresse)
+    // function searchQB($adresse)
+    // {
+    //    return $this->createQueryBuilder('ev')
+    //    ->where('ev.adresse LIKE ?1')
+    //    ->setParameter('1','%'.$adresse.'%')->getQuery()->getResult();
+    // }
+
+
+    function searchQB($searchTerm)
     {
        return $this->createQueryBuilder('ev')
-       ->where('ev.adresse LIKE ?1')
-       ->setParameter('1','%'.$adresse.'%')->getQuery()->getResult();
+          ->where('ev.nom LIKE :searchTerm')
+          ->orWhere('ev.adresse LIKE :searchTerm')
+          ->setParameter('searchTerm', '%'.$searchTerm.'%')
+          ->getQuery()
+          ->getResult();
     }
     
     function orderByDateQB()

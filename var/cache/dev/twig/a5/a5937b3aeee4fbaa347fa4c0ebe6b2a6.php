@@ -135,7 +135,7 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_evenement_recherche");
         echo "\">
                         <div class=\"input-group\">
-                            <input name=\"search\" type=\"text\" class=\"form-control bg-light border-0 small js-search-input\" placeholder=\"Recherche selon adresse...\"
+                            <input name=\"search\" type=\"text\" class=\"form-control bg-light border-0 small js-search-input\" placeholder=\"Recherche selon adresse,nom...\"
                                 aria-label=\"Search\" aria-describedby=\"basic-addon2\">
                                 ";
         // line 36
@@ -304,20 +304,9 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
                                     </tbody>
                                 </table>
                              <div class=\"card-footer bg-transparent p-0\">
-                        <!-- Pagination START -->
-                         <div class=\"d-sm-flex justify-content-sm-between align-items-sm-center\">
-                            <!-- Content -->
-                            <p class=\"mb-0 text-center text-sm-start\"></p>
-                            <!-- Pagination -->
-                            <nav class=\"d-flex justify-content-center mb-0\" aria-label=\"navigation\">
-                                ";
-        // line 152
-        echo $this->extensions['Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension']->render($this->env, (isset($context["evenements"]) || array_key_exists("evenements", $context) ? $context["evenements"] : (function () { throw new RuntimeError('Variable "evenements" does not exist.', 152, $this->source); })()));
-        echo "
-                            </nav>
-                        </div>  
-                        <!-- Pagination END -->
-                    </div>
+                        ";
+        // line 156
+        echo "                    </div>
                             </div>
                         </div>
 
@@ -359,7 +348,7 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
 
     public function getDebugInfo()
     {
-        return array (  333 => 167,  315 => 152,  302 => 141,  296 => 140,  291 => 136,  273 => 123,  269 => 122,  263 => 119,  250 => 109,  237 => 99,  233 => 98,  229 => 97,  225 => 96,  221 => 95,  217 => 94,  214 => 93,  209 => 92,  184 => 70,  161 => 50,  155 => 47,  142 => 36,  135 => 31,  130 => 28,  120 => 27,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
+        return array (  322 => 167,  309 => 156,  302 => 141,  296 => 140,  291 => 136,  273 => 123,  269 => 122,  263 => 119,  250 => 109,  237 => 99,  233 => 98,  229 => 97,  225 => 96,  221 => 95,  217 => 94,  214 => 93,  209 => 92,  184 => 70,  161 => 50,  155 => 47,  142 => 36,  135 => 31,  130 => 28,  120 => 27,  89 => 6,  79 => 5,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -396,7 +385,7 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
                     <form
                         class=\"d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search\" method=\"post\" action=\"{{ path('app_evenement_recherche') }}\">
                         <div class=\"input-group\">
-                            <input name=\"search\" type=\"text\" class=\"form-control bg-light border-0 small js-search-input\" placeholder=\"Recherche selon adresse...\"
+                            <input name=\"search\" type=\"text\" class=\"form-control bg-light border-0 small js-search-input\" placeholder=\"Recherche selon adresse,nom...\"
                                 aria-label=\"Search\" aria-describedby=\"basic-addon2\">
                                 {# <input value=\"Recherche\" type=\"submit\" class=\"form-control bg-light border-0 small\"> #}
                             <div class=\"input-group-append\">
@@ -509,7 +498,7 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
                                     </tbody>
                                 </table>
                              <div class=\"card-footer bg-transparent p-0\">
-                        <!-- Pagination START -->
+                        {# <!-- Pagination START -->
                          <div class=\"d-sm-flex justify-content-sm-between align-items-sm-center\">
                             <!-- Content -->
                             <p class=\"mb-0 text-center text-sm-start\"></p>
@@ -518,7 +507,7 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
                                 {{ knp_pagination_render(evenements) }}
                             </nav>
                         </div>  
-                        <!-- Pagination END -->
+                        <!-- Pagination END --> #}
                     </div>
                             </div>
                         </div>
@@ -538,6 +527,6 @@ class __TwigTemplate_cf4b3571840c6954ac72d32a533bc47e extends Template
 
     
 {% endblock %}
-", "evenement/index.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidev - Copie 2\\templates\\evenement\\index.html.twig");
+", "evenement/index.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidevErij\\ProjetPidev - Copie 2\\templates\\evenement\\index.html.twig");
     }
 }

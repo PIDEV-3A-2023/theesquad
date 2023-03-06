@@ -84,6 +84,6 @@ class __TwigTemplate_3c2e4677ea403d019a0ddc9a8b7d6935 extends Template
     {{ form_widget(form) }}
     <button class=\"btn\">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
-", "exercice/_form.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidev - Copie 2\\templates\\exercice\\_form.html.twig");
+", "exercice/_form.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidevErij\\ProjetPidev - Copie 2\\templates\\exercice\\_form.html.twig");
     }
 }

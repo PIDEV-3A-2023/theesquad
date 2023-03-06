@@ -277,6 +277,19 @@ class __TwigTemplate_a9364f39e9c3e9d1b7d05ea18880e953 extends Template
 
                                     </tbody>
                                 </table>
+                                 <!-- Pagination START -->
+                         <div class=\"d-sm-flex justify-content-sm-between align-items-sm-center\">
+                            <!-- Content -->
+                            <p class=\"mb-0 text-center text-sm-start\"></p>
+                            <!-- Pagination -->
+                            <nav class=\"d-flex justify-content-center mb-0\" aria-label=\"navigation\">
+                                ";
+        // line 141
+        echo $this->extensions['Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension']->render($this->env, (isset($context["exercices"]) || array_key_exists("exercices", $context) ? $context["exercices"] : (function () { throw new RuntimeError('Variable "exercices" does not exist.', 141, $this->source); })()));
+        echo "
+                            </nav>
+                        </div>  
+                        <!-- Pagination END -->
                             </div>
                         </div>
                     </div>
@@ -287,7 +300,7 @@ class __TwigTemplate_a9364f39e9c3e9d1b7d05ea18880e953 extends Template
                                 <a style =\"justify-content: center;display: inline-flex;width: 140px!important;height: 
                                 35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;\" 
                                 href=\"";
-        // line 144
+        // line 154
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_exercice_tri");
         echo "\">Trier selon nom</a>
                             </div>
@@ -317,7 +330,7 @@ class __TwigTemplate_a9364f39e9c3e9d1b7d05ea18880e953 extends Template
 
     public function getDebugInfo()
     {
-        return array (  291 => 144,  276 => 131,  267 => 127,  249 => 114,  245 => 113,  239 => 110,  226 => 100,  213 => 90,  209 => 89,  205 => 88,  201 => 87,  198 => 86,  193 => 85,  167 => 62,  142 => 39,  135 => 34,  130 => 31,  120 => 30,  89 => 10,  79 => 9,  60 => 5,  37 => 3,);
+        return array (  304 => 154,  288 => 141,  276 => 131,  267 => 127,  249 => 114,  245 => 113,  239 => 110,  226 => 100,  213 => 90,  209 => 89,  205 => 88,  201 => 87,  198 => 86,  193 => 85,  167 => 62,  142 => 39,  135 => 34,  130 => 31,  120 => 30,  89 => 10,  79 => 9,  60 => 5,  37 => 3,);
     }
 
     public function getSourceContext()
@@ -456,6 +469,16 @@ class __TwigTemplate_a9364f39e9c3e9d1b7d05ea18880e953 extends Template
 
                                     </tbody>
                                 </table>
+                                 <!-- Pagination START -->
+                         <div class=\"d-sm-flex justify-content-sm-between align-items-sm-center\">
+                            <!-- Content -->
+                            <p class=\"mb-0 text-center text-sm-start\"></p>
+                            <!-- Pagination -->
+                            <nav class=\"d-flex justify-content-center mb-0\" aria-label=\"navigation\">
+                                {{ knp_pagination_render(exercices) }}
+                            </nav>
+                        </div>  
+                        <!-- Pagination END -->
                             </div>
                         </div>
                     </div>
@@ -472,6 +495,6 @@ class __TwigTemplate_a9364f39e9c3e9d1b7d05ea18880e953 extends Template
 
  
 
-{% endblock %}", "exercice/index.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidev - Copie 2\\templates\\exercice\\index.html.twig");
+{% endblock %}", "exercice/index.html.twig", "C:\\Users\\User\\Desktop\\ProjetPidevErij\\ProjetPidev - Copie 2\\templates\\exercice\\index.html.twig");
     }
 }

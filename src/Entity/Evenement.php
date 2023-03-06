@@ -55,12 +55,18 @@ class Evenement
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Participation::class)]
+    private Collection $participations;
+
+
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Exercice::class)]
     private Collection $exercices;
 
     public function __construct()
     {
         $this->exercices = new ArrayCollection();
+        $this->participations = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -188,6 +194,36 @@ class Evenement
             // set the owning side to null (unless already changed)
             if ($exercice->getEvenement() === $this) {
                 $exercice->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+
+     /**
+     * @return Collection<int, Participation>
+     */
+    public function getParticipations(): Collection
+    {
+        return $this->participations;
+    }
+
+    public function addParticipation(Participation $participation): self
+    {
+        if (!$this->participations->contains($participation)) {
+            $this->participations[] = $participation;
+            $participation->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParticipation(Participation $participation): self
+    {
+        if ($this->participations->removeElement($participation)) {
+            // set the owning side to null (unless already changed)
+            if ($participation->getEvenement() === $this) {
+                $participation->setEvenement(null);
             }
         }
 

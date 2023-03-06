@@ -26,9 +26,25 @@
                               
                                  <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" 
                                  href="{{ path('affichage_exercices_evenement_front', {'id': e.id}) }}">Details</a>
-                                 <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5; margin-left: 10px" 
-                                 {# href="{{ path('', {}) }}" #}
-                                 >Participer</a>
+                                  {% if check is defined  %}		 
+										 
+										  {% set checkpar = true %}
+ 											{% for ch in check  %}
+  													 {% if e.id == ch.id  %}
+                                  {% set checkpar = false %}
+												 {% endif   %}
+                                               {% endfor %}
+								 {% if checkpar == true  %}
+								   <ul class="tc_meta float-right">
+									   <a href="{{ path( 'participer' , {'id':e.id} )}}"><button type="button" class="btn btn-lg btn-thm" style="background-color:#30458B; border-color:#daeee5; color:#daeee5; margin-left: 10px" >Particier</button></a>
+									    </ul>
+                                {% else  %}
+								 <ul class="tc_meta float-right">
+										 <a href="{{ path( 'imparticiper' , {'id':e.id} )}}"><button type="button" class="btn btn-lg btn-thm" style="margin-left: 10px" >S'abstenir</button></a> 
+										 </ul>
+                      		{% endif   %}	
+		
+                           {% endif   %}	
                               </div>
                            </div>
                         </div>
