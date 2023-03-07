@@ -1,0 +1,96 @@
+{% extends 'coach/dashboardCoach.html.twig' %}
+
+{# {% block body %}
+    <h1>Create new Exercice</h1>
+
+    {{ include('exercice/_form.html.twig') }}
+
+    <a href="{{ path('app_exercice_index') }}">back to list</a>
+{% endblock %}
+
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}New Evenement{% endblock %} #}
+
+{% block coach %}
+
+
+   <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Ajouter un exercice!</h1>
+                            </div>
+                             {{form_start(form,{'attr':{'novalidate':'novalidate' , 'class' : 'user' }})}}
+
+                             <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                 {{ form_widget(form.nom,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'nom' } }) }} 
+                                    
+                                    {% if form_errors(form.nom) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.nom) }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                         
+                                 <div class="col-sm-6">
+                             {{ form_widget(form.duree,{ 'attr': {'class': 'form-control form-control-user','placeholder' : 'Duree'} }) }}
+
+                                {% if form_errors(form.duree) is not empty %}
+                                    <div class="alert alert-danger" >
+                                    {{ form_errors(form.duree) }}
+                                </div>
+                                {% endif %}
+                                    </div>
+                                
+                            </div> 
+                         
+
+
+                                <div class="form-group">
+                                {{ form_widget(form.description,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'} }) }}   
+                                  {% if form_errors(form.description) is not empty %}
+                                                    <div class="alert alert-danger" >
+                                                    {{ form_errors(form.description) }}
+                                                </div>
+                                                {% endif %}
+                                </div>
+
+                                   <div class="form-group">
+                             {{ form_widget(form.evenement,{ 'attr': {'class': 'form-control ', 'placeholder' : 'Nom Evenement' } })}} 
+
+                                {% if form_errors(form.evenement) is not empty %}
+                                    <div class="alert alert-danger" >
+                                    {{ form_errors(form.evenement) }}
+                                </div>
+                                {% endif %}
+                                    </div>
+                                
+                                {{ form_row(form.image) }}  
+                                   
+
+
+                                <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Ajouter') }}</button>
+                                <hr> 
+                               
+                            {{ form_end(form) }} 
+                            <hr>
+                            <div class="text-center">
+                                    <a href="{{ path('app_exercice_index') }}">back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

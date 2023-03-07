@@ -1,0 +1,78 @@
+{% block javascripts %}
+   
+{% endblock %}
+
+{% block body %}
+<style>
+table {
+  border-color: #4c71de;
+  line-height: 2;
+}
+img {
+    position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: auto;
+    }
+title {
+        color: #4c71de;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+</style>
+ <!-- Begin Page Content -->
+  {# <img  src="data:image/jpeg;base64,{{ logobase64 }}" /> #}
+  <br></br>
+  <br></br>
+  <br></br>
+
+                <div class="container-fluid">
+
+                    
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3 ;style=text-align: center; color: #4c71de;">
+                    <h2 style="text-align: center; color: #4c71de;">Exercices disponibles</h2>
+                        </div>
+                        <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered  border: 2px solid blue; " border=2 id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Id</th>
+                                    <th style="text-align:center;">Nom</th>
+                                    <th style="text-align:center;">Description</th>
+                                    <th style="text-align:center;">Duree</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for exercice in exercices %}
+                                <tr>
+                                    <td style="text-align:center;">{{ exercice.id }}</td>
+                                    <td style="text-align:center;">{{ exercice.nom }}</td>
+                                    <td style="text-align:center;">{{ exercice.description }}</td>
+                                    <td style="text-align:center;">{{ exercice.duree}}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <td colspan="5" style="text-align:center;">No records found</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                        </div>
+
+                    </div>
+
+                </div>
+              
+
+
+
+    
+{% endblock %}
+
+

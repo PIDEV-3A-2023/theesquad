@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <!-- Basic -->
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <!-- Mobile Metas -->
+            <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+            <!-- Site Metas -->
+            <title>Game Info</title>
+            <meta name="keywords" content="">
+            <meta name="description" content="">
+            <meta name="author" content="">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+                <link rel="shortcut icon" href="" type="image/x-icon" />
+                <link rel="apple-touch-icon" href="">
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="{{ asset('Front/css/bootstrap.min.css')}}">
+                <!-- Site CSS -->
+                <link rel="stylesheet" href="{{ asset('Front/style.css')}}">
+                <!-- Colors CSS -->
+                <link rel="stylesheet" href="{{ asset('Front/css/colors.css')}}">
+                <!-- ALL VERSION CSS -->	
+                <link rel="stylesheet" href="{{ asset('Front/css/versions.css')}}">
+                <!-- Responsive CSS -->
+                <link rel="stylesheet" href="{{ asset('Front/css/responsive.css')}}">
+                <!-- Custom CSS -->
+                <link rel="stylesheet" href="{{ asset('Front/css/custom.css')}}">
+                <!-- font family -->
+                <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+                <!-- end font family -->
+                <link rel="stylesheet" href="{{ asset('Front/css/3dslider.css')}}" />
+        {% endblock %}
+
+        {% block javascripts %}
+                  <script src="{{ asset('http://code.jquery.com/jquery-1.11.1.min.js')}}"></script>
+                <link href="{{ asset('http://www.jqueryscript.net/css/jquerysctipttop.css')}}" rel="stylesheet" type="text/css">
+                <script src="{{ asset('Front/js/3dslider.js')}}"></script>
+                 <script src="{{ asset('Front/js/all.js')}}"></script>
+                 <!-- ALL PLUGINS -->
+                 <script src="{{ asset('Front/js/custom.js')}}"></script>
+        {% endblock %}
+
+
+        
+    </head>
+    <body>
+     <div id="preloader">
+         <img class="preloader" src="{{ asset('Front/images/loading-img.gif')}}" alt="">
+      </div>
+
+        <section id="top">
+
+         <div class="full-slider">
+            <div id="carousel-example-generic" class="carousel slide">
+               <!-- Indicators -->
+               <ol class="carousel-indicators">
+                  <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                  <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+               </ol>
+               <!-- Wrapper for slides -->
+               <div class="carousel-inner" role="listbox">
+                  <!-- First slide -->
+                  <div class="item active deepskyblue" data-ride="carousel" data-interval="5000">
+                     <div class="carousel-caption">
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                           <div class="slider-contant" data-animation="animated fadeInRight">
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- /.item -->
+                  <!-- Second slide -->
+                  <div class="item skyblue" data-ride="carousel" data-interval="5000">
+                     <div class="carousel-caption">
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                           <div class="slider-contant" data-animation="animated fadeInRight">
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- /.item -->
+                  <!-- Third slide -->
+                  <div class="item darkerskyblue" data-ride="carousel" data-interval="5000">
+                     <div class="carousel-caption">
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+
+                        </div>
+                     </div>
+                  </div>
+                  <!-- /.item -->
+               </div>
+               <!-- /.carousel-inner -->
+               <!-- Controls -->
+               <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+               <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+               <span class="sr-only">Previous</span>
+               </a>
+               <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+               <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+               <span class="sr-only">Next</span>
+               </a>
+            </div>
+            <!-- /.carousel -->
+            <div class="news">
+               <div class="container">
+                  <div class="heading-slider">
+                     <p class="headline"><i class="fa fa-star" aria-hidden="true"></i> Top Headlines :</p>
+                     <!--made by vipul mirajkar thevipulm.appspot.com-->
+                     <h1>
+                     <a href="" class="typewrite" data-period="2000" data-type='[ "Contrary to popular belief, Lorem Ipsum is not simply random text.", "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout."]'>
+                     <span class="wrap"></span>
+                     </a>
+                     </h1	   
+                     <span class="wrap"></span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+        </section>
+        {% block body %}{% endblock %}
+        <footer id="footer" class="footer">
+         <div class="container">
+            <div class="row">
+
+
+            </div>
+         </div>
+         <div class="footer-bottom">
+            <div class="container">
+               <p>Copyright © 2023 Distributed by <a href="" target="_blank">HealthConnect</a></p>
+            </div>
+         </div>
+      </footer>
+      <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+    </body>
+</html>

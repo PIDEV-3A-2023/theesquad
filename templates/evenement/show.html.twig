@@ -1,0 +1,86 @@
+{% extends 'coach/dashboardCoach.html.twig' %}
+
+{% block coach %}
+ 
+{# {{ dump(evenement)}} affiche l contenu mtaa l variable fel page bch taaref fama erreur walee #}
+
+    <div style="display:flex;">
+        <div class="col-lg-8">
+            <h1>Evenement</h1>
+        </div>
+        <div class="col-lg-4" style="display :flex">
+            <a style="justify-content: center; display: inline-flex; width: 90px!important; height: 35px; background-color: #4c71de;
+                    color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;"
+                    href="{{ path('app_evenement_index') }}">back to list</a>
+
+            <a style="justify-content: center; display: inline-flex; width: 90px!important; height: 35px; background-color: #4c71de;
+                    color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;"
+                    href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+
+            <form style="width: 4px;margin: 0px 3px 0px 3px; width: 80px!important;" method="post" action="{{ path('app_evenement_delete', {'id': evenement.id}) }}" onsubmit="return confirm('Etes vous sur à propos la suppression de cet élément?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ evenement.id) }}">
+                <button style="justify-content: center; display: inline-flex; width: 90px!important; height: 35px;
+                background-color: #fd3838; color: white; padding-top: 5px; border-radius: 10px;"  
+                class="btn">Supprimer</button>
+            </form>
+        </div>
+    </div>
+
+
+    
+    
+    <table class="table ">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ evenement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ evenement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ evenement.type }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ evenement.adresse }}</td>
+            </tr>
+              <tr>
+                <th>Description</th>
+                <td>{{ evenement.description }}</td>
+            </tr>
+
+            <tr>
+                <th>image</th>
+                {# <a href="{{ asset('uploads/brochures/' ~ product.brochureFilename) }}">View brochure (PDF)</a> #}
+                <td>
+                <img  src="{{ asset('Back/img/' ~ evenement.image )  }}" alt="" width="80" height="80" />
+                {# {{ asset('Back/img' ~ evenement.image)  }} #}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+    
+<h1>Exercices</h1>
+    <table class="table">
+        <tbody>
+           {% for exercice in exercices %}
+            <tr>
+                <td>{{ exercice.nom }}</td>
+             {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+     <a style="justify-content: center; display: inline-flex; width: 150px!important; height: 35px; background-color: #4c71de;
+                    color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;"
+                    href="{{ path('app_exercice_new') }}">Ajouter Exercice</a>
+{% endblock %}

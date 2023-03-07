@@ -1,0 +1,156 @@
+{% extends 'coach/dashboardCoach.html.twig' %}
+
+
+{# ce script sera exécuté lorsque le document est pret cad lorsque toutes les ressources de la page ont été chargées. #}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    //Le script utilise la bibliothèque jQuery, qui doit être incluse sur la page pour que ce code fonctionne.
+        $(document).ready(function () {
+            // ajoute un gestionnaire d'événements sur l'élément HTML input avec l'attribut name "search".
+           // Ce gestionnaire est déclenché à chaque fois que l'utilisateur saisit une valeur dans l'input.
+
+            $('input[name="search"]').on('input', function () {
+
+            //Le code trouve ensuite le formulaire parent de l'élément input en utilisant la méthode "closest"
+            //puis le soumet en appelant la méthode "submit".
+
+                $(this).closest('form').submit();
+
+         ///En conséquence, lorsque l'utilisateur tape quelque chose dans l'input, le formulaire est soumis automatiquement
+         /// , ce qui déclenche la recherche en utilisant la valeur de l'input.
+            });
+        });
+    </script>
+{% endblock %}
+{% block coach %}
+ <!-- Topbar Search -->
+                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search" method="post" action="{{ path('app_exercice_recherche') }}">
+                        <div class="input-group">
+                            <input name="search" type="text" class="form-control bg-light border-0 small js-search-input" placeholder="Recherche selon nom..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                                {# <input value="Recherche" type="submit" class="form-control bg-light border-0 small"> #}
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div> 
+                        </div>
+                    </form>
+                    </nav>
+ <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Exercices relatives au differentes événements</h1>
+                    <div style="display :flex;">
+                            <div class="col-lg-10">
+                            <p class="mb-4"></p>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <a style ="justify-content: center;display: inline-flex;width: 135px!important;height: 
+                                35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;" 
+                                href="{{ path('app_exercice_new') }}">Nouveau exercice</a>
+                            </div>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Nom</th>
+                                            <th>Durée</th>
+                                            <th>Nom de l'événement</th>
+                                            <th>Actions</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for exercice in exercices %}
+                                            <tr>
+                                                <td>{{ exercice.id }}</td>
+                                                <td>{{ exercice.nom }}</td>
+                                                <td>{{ exercice.duree }}</td>
+                                                <td>{{ exercice.evenement.nom }}</td>
+                                                <td style="display: flex;" HEIGHT="10%">
+                                                    <a style="justify-content: center;
+                                                display: inline-flex;
+                                                width: 90px!important;
+                                                height: 35px;
+                                                background-color: #4c71de;
+                                                color: white;
+                                                padding-top: 5px;
+                                                border-radius: 10px;
+                                                margin: 0px 3px 0px 3px; width: 80px!important;" href="{{ path('app_exercice_show', {'id': exercice.id}) }}">Afficher</a>
+    
+                                                    <a style="justify-content: center;
+                                                display: inline-flex;
+                                                width: 90px!important;
+                                                height: 35px;
+                                                background-color: #4c71de;
+                                                color: white;
+                                                padding-top: 5px;
+                                                border-radius: 10px;
+                                                margin: 0px 3px 0px 3px; width: 80px!important;"  href="{{ path('app_exercice_edit', {'id': exercice.id}) }}">Modifier</a>
+
+
+                                                    <form style="width: 4px;margin: 0px 3px 0px 3px; width: 80px!important;" method="post" action="{{ path('app_exercice_delete', {'id': exercice.id}) }}" onsubmit="return confirm('Etes vous sur à propos la suppression de cet élément?');">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ exercice.id) }}">
+                                                        <button style="justify-content: center;
+                                               display: inline-flex;
+                                                width: 90px!important;
+                                                height: 35px;
+                                                background-color: #fd3838;
+                                                color: white;
+                                                padding-top: 5px;
+                                                border-radius: 10px;"  class="btn">Supprimer</button>
+                                                                                            </form>
+                                                                                            </td>
+                                                                                        </tr>
+                                                {% else %}
+                                                 <tr>
+                                                 <td colspan="6">no records found</td>
+                                                </tr>
+                                                {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                                 <!-- Pagination START -->
+                         <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+                            <!-- Content -->
+                            <p class="mb-0 text-center text-sm-start"></p>
+                            <!-- Pagination -->
+                            <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+                                {{ knp_pagination_render(exercices) }}
+                            </nav>
+                        </div>  
+                        <!-- Pagination END -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+                            <div class="col-lg-2">
+                                <a style ="justify-content: center;display: inline-flex;width: 140px!important;height: 
+                                35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;" 
+                                href="{{ path('app_exercice_tri') }}">Trier selon nom</a>
+                            </div>
+
+
+
+ 
+
+{% endblock %}

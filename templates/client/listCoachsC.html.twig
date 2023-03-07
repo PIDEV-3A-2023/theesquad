@@ -1,0 +1,61 @@
+{% extends 'base2.html.twig' %}
+{% block body %}
+    <section id="top">
+        <header>
+            <div class="container">
+                <div class="header-top">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="full">
+                                <div class="logo">
+                                    <a href=""><img src="{{ asset('Front/images/logo.png') }}" alt="#" /></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </header>
+        <div class="inner-page-banner">
+            <div class="container">
+            </div>
+        </div>
+        <div class="inner-information-text">
+            <div class="container">
+                <h3>Liste des Coachs</h3>
+            </div>
+        </div>
+    </section>
+    <section id="contant" class="contant main-heading team">
+        <div class="row">
+            <div class="container">
+                {% for coach in coaches %}
+                    <div class="col-md-3 column">
+                        <div class="card">
+                            <img class="img-responsive" src="{{ asset('Client_img/' ~ coach.image) }}" alt="" style="width:100%; height: 100%;">
+                            <div class="">
+                                <h4>{{ coach.nom }} {{ coach.prenom }}</h4>
+                                <p class="title">{{ coach.email }}</p>
+                                <p class="title">{{ coach.telephone }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <footer id="footer" class="footer">
+        <div class="container">
+            <div class="row">
+
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>Copyright © 2023 Distributed by <a href="" target="_blank">HealthConnect</a></p>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

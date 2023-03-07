@@ -1,0 +1,59 @@
+ {% extends 'baseFront.html.twig' %}
+
+        {% block body %}
+                  {# <div class="container">
+                  <div class="feature-post small-blog">
+                     <div class="col-md-5">
+                        <div class="feature-img">
+                        <img  src="{{ asset('Back/img/' ~ ev.image )  }}" alt="" width="400" height="300" />
+                        </div>
+                     </div>
+                     <div class="col-md-7">
+                        <div class="feature-cont">
+                           <div class="post-info">
+                              
+                                 <h2 ><Font color="#30458B"><B>{{ev.nom}}</B></Font></h2>
+                                 <h5><B>Date : </B>{{ev.date|date('Y-m-d')}}</h5>
+                              
+                           </div>
+                           <div class="post-heading">
+                              <h4><B>Adresse : </B>{{ev.adresse}}</B></h4>
+                              <p>{{ev.description}}</p>
+                              <div class="full" >
+                                 <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="#">Details</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+              </div> #}
+
+
+              {% for e in exercices %}
+                <div class="container">
+                  <div class="feature-post small-blog">
+                     <div class="col-md-5">
+                        <div class="feature-img">
+                        <img  src="{{ asset('Back/img/' ~ e.image )  }}" alt="" width="400" height="350" />
+                           {# <img src="images/post2.png" class="img-responsive" alt="#" /> #}
+                        </div>
+                     </div>
+                     <div class="col-md-7">
+                        <div class="feature-cont">
+                           <div class="post-info">
+                              
+                                 <h2 ><Font color="#30458B"><B>{{e.nom}}</B></Font></h2>
+                                 <h5><B>duree : </B>{{e.duree}}</h5>
+                              
+                           </div>
+                           <div class="post-heading">
+                              <p>{{e.description}}</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+              </div>
+              {% endfor %}
+
+        {% endblock %}
+
