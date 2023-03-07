@@ -1,0 +1,9 @@
+{% block rating_widget %}
+    {% for star in 1..stars %}
+        {% if rating is defined and star <= rating %}
+            <span class="fa fa-star"></span>
+        {% else %}
+            <span class="fa fa-star-o"></span>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

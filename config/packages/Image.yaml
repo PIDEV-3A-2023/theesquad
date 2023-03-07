@@ -1,0 +1,26 @@
+liip_imagine:
+    driver: "gd"
+    filter_sets:
+    
+       
+        small:
+            quality: 75
+            filters:
+                scale: 
+                     dim: [120, 90]
+        medium:
+            quality: 85
+            filters:
+                 scale: 
+                     dim: [1200, 1200]
+        large:
+            quality: 75
+            filters:
+                 scale: 
+                     dim: [1400, 1200]
+       
+                
+web_profiler:
+    intercept_redirects: false               
+
+
