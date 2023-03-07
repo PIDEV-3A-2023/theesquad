@@ -35,13 +35,20 @@ class ProduitController extends AbstractController
 
     #[Route('/frontAffichage', name: 'affichage_produit_front', methods: ['GET']
     )]
-    public function indexFront( ProduitRepository $produitRepository,Request $request,PaginatorInterface $paginator): Response    {
+    public function indexFront( ProduitRepository $produitRepository,CategorieProduitRepository $categorieProduitRepository ,Request $request,PaginatorInterface $paginator): Response    {
         $produit = $produitRepository->findAll();
         $produit  = $paginator->paginate(
             $produit  ,
             $request->query->getInt('page', 1),
             3
-        );        return $this->render('produit/Front.html.twig',['produit'=>$produit]);
+        );
+
+        //on va chercher toutes les categorie
+        $categorie=$categorieProduitRepository->findAll();
+        return $this->render('produit/Front.html.twig',[
+            'produit'=>$produit,
+            'categories'=>$categorie
+        ]);
     }
 
 

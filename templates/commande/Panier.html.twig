@@ -3,8 +3,9 @@
     {% block title %}Mon Panier
     {% endblock %}
 
-    {% block body %}
 
+
+    {% block body %}
         <main id="main" class="main">
                 <div class="alert alert-danger" role="alert">
                 </div>
@@ -18,9 +19,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title">List produits</h3>
-                                <table class="table">
+                                <table class="table" >
                                     <thead>
-                                    <tr>
+                                    <tr >
                                         <th scope="col">Produit</th>
                                         <th scope="col">Prix</th>
                                         <th scope="col">Description</th>
@@ -78,6 +79,7 @@
                                     <tr>
                                         <td colspan="3">Total</td>
                                         <td class="text-end">{{ total }}</td>
+
                                         <td>
                                             <a href="{{path("deletepanier")}}}" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="red" class="bi bi-cart-x" viewBox="0 0 16 16">
@@ -94,7 +96,10 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </section>
+            <a href="{{path('app_payment')}}" class="btn">Acheter</a>
+            <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path("affichage_produit_front")}}">Retour Au liste des Produits </a>
         </main>
     {% endblock %}
