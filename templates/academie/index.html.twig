@@ -2,15 +2,19 @@
 
 {% block title %}Academie{% endblock %}
 
-
-
 {% block body %}
-
+<!-- input tag -->
+<h2>Chercher une academie</h2>
+    <input id="searchbar" onkeyup="search_academie()" type="text"
+           name="search" placeholder="Search ..">
  <!-- Begin Page Content -->
                 <div class="container-fluid">
+                
+    
+ 
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Academie</h1>
+                    <h1 class="h3 mb-2 text-gray-800"></h1>
                     <div style="display :flex;">
                             <div class="col-lg-10">
                            
@@ -25,19 +29,23 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary"></h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+
+
+    
+
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                                       <th>Id</th>
-                                                       <th>Nom</th>
-                                                       <th>Adresse</th>
-                                                       <th>Num_tel</th>
-                                                       <th>Sport_propose</th>
-                                                        <th> Salles </th> 
+                                                       <th class="line">Id</th>
+                                                       <th class="line">Nom</th>
+                                                       <th class="line">Adresse</th>
+                                                       <th class="line">Num_tel</th>
+                                                       <th class="line">Sport_propose</th>
+                                                        <th class="line"> Salles </th> 
                                                      
                                 
                                                        <th>actions</th>
@@ -47,20 +55,19 @@
                                         
                                          {% for academie in academies %}
                                          <tr>
-                                         <td>{{ academie.id }}</td>
-                                         <td>{{ academie.nom }}</td>
-                                         <td>{{ academie.adresse }}</td>
-                                        <td>{{ academie.numtel }}</td>
-                                        <td>{{ academie.sportpropose }}</td>
+                                         <td class="tcell">{{ academie.id }}</td>
+                                         <td class="tcell">{{ academie.nom }}</td>
+                                         <td class="tcell">{{ academie.adresse }}</td>
+                                        <td class="tcell"> {{ academie.numtel }}</td>
+                                        <td class="tcell" >{{ academie.sportpropose }}</td>
                 
-     <td>
+     <td class="tcell">
         {% for salle in academie.salles %}
             {{ salle.nom }}
             {% if not loop.last %}, {% endif %}
         {% endfor %}
     </td> 
-
-
+ 
                                      
                                        
                                                 <td style="display: flex;" >
@@ -106,6 +113,32 @@
 
                                     </tbody>
                                 </table>
+                                    {# Fonction de recherche d'espace selon multiple criteres  #}
+    
+    <script>
+
+        // JavaScript code
+        function search_academie() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('tcell');
+
+            for (i = 0; i < x.length; i++) {
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="list-item";
+                }
+            }
+        }
+
+    </script>
+
+                            <div class="align-center">{{knp_pagination_render(academies)}} </div>
+                            <a href="{{ path('exportexcel') }}">Exporter vers Excel</a>
+                             <a href="{{ path('listp') }}">Pdf</a>
+                            
                             </div>
                         </div>
                     </div>
@@ -113,95 +146,3 @@
                 </div>
             
                 {% endblock %}
-{# {# {% extends 'baseBack.html.twig' %}
-{% block title %}Academie {% endblock %}
-
-{% block body %}
-    <h1>Academie </h1>
-     <div class="container-fluid">
-
-        
-            <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                           
-            </div>
-            <div class="card-body">
-            <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    
-  
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Id_academie</th>
-                <th>Nom</th>
-                <th>Adresse</th>
-                <th>Num_tel</th>
-                <th>Sport_propose</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for academie in academies %}
-            <tr>
-                <td>{{ academie.id }}</td>
-                <td>{{ academie.idAcademie }}</td>
-                <td>{{ academie.nom }}</td>
-                <td>{{ academie.adresse }}</td>
-                <td>{{ academie.numTel }}</td>
-                <td>{{ academie.sportPropose }}</td>
-                
-                
-                <td style="display: flex;" >
-                <a style="justify-content: center;
-    display: inline-flex;
-    width: 90px!important;
-    height: 35px;
-    background-color: #4c71de;
-    color: white;
-    padding-top: 5px;
-    border-radius: 10px;
-    margin: 0px 3px 0px 3px;" href="{{ path('app_academie_show', {'id': academie.id}) }}">show</a>
-    
-                                                    <a style="justify-content: center;
-    display: inline-flex;
-    width: 90px!important;
-    height: 35px;
-    background-color: #4c71de;
-    color: white;
-    padding-top: 5px;
-    border-radius: 10px;
-    margin: 0px 3px 0px 3px;"  href="{{ path('app_academie_edit', {'id': academie.id}) }}">edit</a>
-
-
-           <form style="width: 4px;margin: 0px 3px 0px 3px; " method="post" action="{{ path('app_academie_delete', {'id': academie.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ academie.id) }}">
-            <button style="justify-content: center;
-    display: inline-flex;
-    width: 90px!important;
-    height: 35px;
-    background-color: #fd3838;
-    color: white;
-    padding-top: 5px;
-    border-radius: 10px;"  class="btn">Delete</button>
-                                                </form>
-                                                </td>
-                                            </tr>
-                                        {% else %}
-                                            <tr>
-                                                <td colspan="6">no records found</td>
-                                            </tr>
-                                        {% endfor %}
-
-               
-               
-       
-        </tbody>
-    </table>
-  </div>
-                        </div>
-                    </div>
-
-                </div>
-    <a href="{{ path('app_academie_new') }}">Create new</a> 
-{% endblock %} #}

@@ -1,0 +1,6 @@
+# easy_notification:
+#     channels:
+#         mail:
+#             type: 'email'
+#             from_email: 'noreply@example.com'
+#             recipients: 'admin@example.com'

@@ -2,35 +2,41 @@
 
 namespace App\Entity;
 
-use App\Repository\SalleRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Academie;
+use Doctrine\ORM\Mapping as ORM;
+use App\Repository\SalleRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SalleRepository::class)]
 class Salle
 {
+   
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('salle')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message:"le champ est vide")]
+    #[Groups('salle')]
     private ?string $nom = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"le champ est vide")]
     #[Assert\Range(min:10, max:50, minMessage:'La capacité minimum doit étre égale à 10', maxMessage:'Cette valeur doit étre inférieure ou égale à 50')]
     #[Assert\Positive(message: 'La capacité doit etre positive',)]
+    #[Groups('salle')]
     private ?int $capacite = null;
 
     #[ORM\Column]
     #[Assert\NotBlank(message:"le champ est vide")]
     #[Assert\Range(max:10, maxMessage:'cette valeur doit étre inférieure ou égale à 10')]
     #[Assert\Positive(message: 'equipement doit etre positif',)]
+    #[Groups('salle')]
     private ?int $equipement = null;
 
     #[ORM\ManyToOne(inversedBy: 'salles')]
@@ -40,6 +46,10 @@ class Salle
 
     #[ORM\OneToMany(mappedBy: 'salle', targetEntity: Cours::class, orphanRemoval: true)]
     private Collection $cours;
+ 
+    #[ORM\OneToMany(mappedBy: 'adminssalle', targetEntity: Admin::class)]
+    private Collection $admins;
+
 
     public function __construct()
     {
@@ -107,25 +117,55 @@ class Salle
         return $this->cours;
     }
 
-    public function addCour(Cours $cour): self
+    public function addCours(Cours $cours): self
     {
-        if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-            $cour->setSalle($this);
+        if (!$this->cours->contains($cours)) {
+            $this->cours->add($cours);
+            $cours->setSalle($this);
         }
 
         return $this;
     }
 
-    public function removeCour(Cours $cour): self
+    public function removeCours(Cours $cours): self
     {
-        if ($this->cours->removeElement($cour)) {
+        if ($this->cours->removeElement($cours)) {
             // set the owning side to null (unless already changed)
-            if ($cour->getSalle() === $this) {
-                $cour->setSalle(null);
+            if ($cours->getSalle() === $this) {
+                $cours->setSalle(null);
             }
         }
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Admin>
+     */
+    public function getAdmins(): Collection
+    {
+        return $this->admins;
+    }
+
+    public function addAdmins(Admin $admin): self
+    {
+        if (!$this->admins->contains($admin)) {
+            $this->admins->add($admin);
+            $admin->setSalle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdmin(Admin $admin): self
+    {
+        if ($this->admins->removeElement($admin)) {
+            // set the owning side to null (unless already changed)
+            if ($admin->getSalle() === $this) {
+                $admin->setSalle(null);
+            }
+        }
+
+        return $this;
+    } 
 }

@@ -3,22 +3,41 @@
 namespace App\Controller;
 
 use App\Entity\Cours;
+use App\Entity\Client;
 use App\Form\CoursType;
+use Symfony\Component\Mime\Email;
 use App\Repository\CoursRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\SalleRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/cours')]
 class CoursController extends AbstractController
 {
     #[Route('/', name: 'app_cours_index', methods: ['GET'])]
-    public function index(CoursRepository $coursRepository): Response
-    {
+    public function index(CoursRepository $coursRepository, Request $request, PaginatorInterface $paginator): Response
+    {   $cours = $coursRepository->findAll();
+        $cours = $paginator->paginate(
+            $cours,
+            $request->query->getInt('page',1),
+            4
+
+        );
         return $this->render('cours/index.html.twig', [
-            'cours' => $coursRepository->findAll(),
+            'cours'=>$cours
+            
         ]);
+    } 
+
+    #[Route('/frontaffichagecours',name: 'affichage_cours_front')]
+    public function indexFront(CoursRepository $coursRepository): Response
+    {
+        $cours=$coursRepository->findAll();
+        return $this->render('cours/frontcours.html.twig',['cours'=>$cours]);
     }
 
     #[Route('/new', name: 'app_cours_new', methods: ['GET', 'POST'])]
@@ -46,13 +65,6 @@ class CoursController extends AbstractController
         return $this->render('cours/show.html.twig', [
             'cours' => $cours,
         ]);
-    }
-
-    #[Route('/frontaffichagecours',name: 'affichage_cours_front')]
-    public function indexFront(CoursRepository $coursRepository): Response
-    {
-        $cours=$coursRepository->findAll();
-        return $this->render('cours/frontcours.html.twig',['cours'=>$cours]);
     }
 
     #[Route('/{id}/edit', name: 'app_cours_edit', methods: ['GET', 'POST'])]
@@ -83,6 +95,7 @@ class CoursController extends AbstractController
         return $this->redirectToRoute('app_cours_index', [], Response::HTTP_SEE_OTHER);
     }
 
-
+  
+     
 
 }

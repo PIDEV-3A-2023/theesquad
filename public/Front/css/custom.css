@@ -79,7 +79,7 @@
  .item {
      display: none;
      position: relative;
-     .transition(s ease-in-out left);
+     transition : (s ease-in-out left);
 }
  .slider-contant h3 {
      font-size: 58px;
@@ -413,7 +413,7 @@
      font-style: italic;
      font-weight: 300;
      font-size: 18px;
-     background: ;
+     /* background: ; */
      border: solid #d8302f 2px;
 }
  .search-bar {
@@ -1382,7 +1382,7 @@ section#contant h4 {
      padding-top: 10px;
 }
  .feature-post {
-     float: left;
+     float: center;
      width: 100%;
      position: relative;
 }
@@ -1458,7 +1458,7 @@ body section#contant .post-info span h4 {
      margin-bottom: 30px;
 }
  .feature-post.small-blog .feature-cont {
-     float: right;
+    float: right;
      background: transparent;
      width: 100%;
      margin: 0px 0 25px 0;

@@ -3,12 +3,14 @@
 {% block title %}Cours{% endblock %}
 
 {% block body %}
-
+<h2>Chercher un cours</h2>
+    <input id="searchbar" onkeyup="search_cours()" type="text"
+           name="search" placeholder="Search ..">
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Cours</h1>
+    <h1 class="h3 mb-2 text-gray-800"></h1>
     <div style="display :flex;">
         <div class="col-lg-10">
         </div>
@@ -22,18 +24,18 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Nom</th>
-                            <th>Date</th>
-                            <th>Duree</th>
-                            <th>Nbparticipants</th>
+                            <th class="line">Id</th>
+                            <th class="line">Nom</th>
+                            <th class="line">Date</th>
+                            <th class="line">Duree</th>
+                            <th class="line">Nbparticipants</th>
 
                             <th>actions</th>
                         </tr>
@@ -41,11 +43,11 @@
                     <tbody>
                         {% for c in cours %}
                         <tr>
-                            <td>{{c.id}}</td>
-                            <td>{{c.nom}}</td>
-                             <td>{{ c.date ? c.date|date('Y-m-d') : '' }}</td>
-                            <td>{{c.duree}}</td>
-                            <td>{{c.nbparticipants}}</td>
+                            <td class="tcell">{{c.id}}</td>
+                            <td class="tcell">{{c.nom}}</td>
+                             <td class="tcell">{{ c.date ? c.date|date('Y-m-d') : '' }}</td>
+                            <td class="tcell">{{c.duree}}</td>
+                            <td class="tcell">{{c.nbparticipants}}</td>
                             <td style="display: flex;">
                                 <a style="justify-content: center;
                                     display: inline-flex;
@@ -95,6 +97,27 @@
 
                                     </tbody>
                                 </table>
+                                 <script>
+
+        // JavaScript code
+        function search_cours() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('tcell');
+
+            for (i = 0; i < x.length; i++) {
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="list-item";
+                }
+            }
+        }
+
+    </script>
+
+                           <div class="align-center">{{knp_pagination_render(cours)}} </div>
                             </div>
                         </div>
                     </div>

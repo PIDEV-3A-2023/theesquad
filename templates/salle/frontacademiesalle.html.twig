@@ -1,0 +1,34 @@
+
+        {% block body %}
+            {% for a in academies %}
+                  <div class="container">
+                  <div class="feature-post small-blog">
+                     <div class="col-md-5">
+                
+                     </div>
+                     <div class="col-md-7">
+                        <div class="feature-cont">
+                           <div class="post-info">
+                              
+                                 <h2 ><Font color="#30458B"><B>{{a.nom}}</B></Font></h2>
+                               
+                              
+                           </div>
+                           <div class="post-heading">
+                              <h4><B>Adresse : </B>{{a.adresse}}</B></h4>
+                              <h4> <b>Numéro de téléphone : </b>{{a.numtel}}</h4>
+                              <h4><b>Sport proposé :</b> {{a.sportpropose}}</h4>
+                              
+                              <div class="full" >
+                              
+                                 <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" 
+                                  href="">Details</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+              </div>
+
+            {% endfor %}
+        {% endblock %}

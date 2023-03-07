@@ -29,6 +29,7 @@ class SalleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+   
 
     public function remove(Salle $entity, bool $flush = false): void
     {
@@ -38,6 +39,13 @@ class SalleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /* public function orderByNom()
+    {
+        return $this->createQueryBuilder('s')
+            ->orderBy('s.nom', 'ASC')
+            ->getQuery()->getResult();
+    } */
 
 //    /**
 //     * @return Salle[] Returns an array of Salle objects

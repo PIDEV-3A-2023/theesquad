@@ -2,28 +2,27 @@
 
 namespace App\Repository;
 
-use App\Entity\Academie;
+use App\Entity\Admin;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Academie>
+ * @extends ServiceEntityRepository<Admin>
  *
- * @method Academie|null find($id, $lockMode = null, $lockVersion = null)
- * @method Academie|null findOneBy(array $criteria, array $orderBy = null)
- * @method Academie[]    findAll()
- * @method Academie[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Admin|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Admin|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Admin[]    findAll()
+ * @method Admin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class AcademieRepository extends ServiceEntityRepository
+class AdminRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Academie::class);
+        parent::__construct($registry, Admin::class);
     }
 
-    public function save(Academie $entity, bool $flush = false): void
+    public function save(Admin $entity, bool $flush = false): void
     {
-
         $this->getEntityManager()->persist($entity);
 
         if ($flush) {
@@ -31,7 +30,7 @@ class AcademieRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Academie $entity, bool $flush = false): void
+    public function remove(Admin $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,15 +39,8 @@ class AcademieRepository extends ServiceEntityRepository
         }
     }
 
-    public function orderByNom()
-    {
-        return $this->createQueryBuilder('academie')
-            ->orderBy('academie.nom', 'ASC')
-            ->getQuery()->getResult();
-    }
-
 //    /**
-//     * @return Academie[] Returns an array of Academie objects
+//     * @return Admin[] Returns an array of Admin objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -62,7 +54,7 @@ class AcademieRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Academie
+//    public function findOneBySomeField($value): ?Admin
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')

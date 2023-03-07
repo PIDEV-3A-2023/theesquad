@@ -3,9 +3,12 @@
 namespace App\Entity;
 
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CoursRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: CoursRepository::class)]
@@ -14,23 +17,40 @@ class Cours
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $id = null;
+    public ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    #[Assert\NotBlank(message:"le champ est vide")]
+    #[Assert\Regex(pattern:'/^[a-zA-Z]+$/', message:'Le champ name ne doit contenir que des lettres alphabétiques.')]
+    public ?string $nom = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?DateTimeInterface $date = null;
+    #[Assert\GreaterThan("today", message:"La date de cours ne doit pas être antérieur à la date et l'heure actuelles")]
+    public ?DateTimeInterface $date = null;
 
     #[ORM\Column]
-    private ?int $duree = null;
+    #[Assert\NotBlank(message:"le champ est vide")]
+    #[Assert\Range(min:1, max:2, minMessage:'La durée minimale doit étre égale à 1h', maxMessage:'La durée doit étre inférieure ou égale à 2h')]
+    #[Assert\Positive(message: 'La capacité doit etre positive',)]
+    public ?int $duree = null;
 
     #[ORM\Column]
-    private ?int $nbparticipants = null;
+    #[Assert\NotBlank(message:"le champ est vide")]
+    #[Assert\Range(min:10, max:30, minMessage:'Le nombre minimum des participants doit étre égale à 10', maxMessage:'Le nombre maximale des participants doit étre égale à 30')]
+    #[Assert\Positive(message: 'La capacité doit etre positive',)]
+    public ?int $nbparticipants = null;
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Salle $salle = null;
+    #[Assert\NotBlank(message:"le champ est vide")]
+    public ?Salle $salle = null;
+
+    #[ORM\ManyToOne(inversedBy: 'cours')]
+    public ?Coach $coach = null;
+
+    #[ORM\OneToMany(mappedBy: 'coursadmin', targetEntity: Admin::class)]
+    private Collection $admins;
+
 
     public function getId(): ?int
     {
@@ -96,4 +116,47 @@ class Cours
 
         return $this;
     }
+
+    public function getCoach(): ?Coach
+    {
+        return $this->coach;
+    }
+
+    public function setCoach(?Coach $coach): self
+    {
+        $this->coach = $coach;
+
+        return $this;
+    }
+    
+    /**
+     * @return Collection<int, Admin>
+     */
+    public function getAdmins(): Collection
+    {
+        return $this->admins;
+    }
+
+    public function addAdmins(Admin $admin): self
+    {
+        if (!$this->admins->contains($admin)) {
+            $this->admins->add($admin);
+            $admin->setCours($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdmin(Admin $admin): self
+    {
+        if ($this->admins->removeElement($admin)) {
+            // set the owning side to null (unless already changed)
+            if ($admin->getCours() === $this) {
+                $admin->setCours(null);
+            }
+        }
+
+        return $this;
+    } 
+  
 }
