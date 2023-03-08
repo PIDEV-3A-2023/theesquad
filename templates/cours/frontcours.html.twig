@@ -1,0 +1,30 @@
+{% extends '../baseFront.html.twig' %}
+{% block title %}Les cours{% endblock %}
+{% block body %}
+<h1> les cours </h1>
+    {% for cours in cours %}
+        <div class="container">
+             <div class="feature-post small-blog text-center"> 
+                <div class="col-md-7">
+                    <div class="feature-cont text-center"> 
+                        <div class="post-info text-center">
+                            <h2><font color="#30458B"><b>{{ cours.nom }}</b></font></h2>
+                            <p><b>date :   </b>{{ cours.date ? cours.date|date('Y-m-d') }} </p>
+                            <p><b>durée : </b>{{ cours.duree }}</p>
+                               <p><b>nombre de participants : </b>{{ cours.nbparticipants }}</p>
+                              
+                           
+
+                        </div>
+                        <div class="post-heading">
+                            <div class="full">
+                                <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+  

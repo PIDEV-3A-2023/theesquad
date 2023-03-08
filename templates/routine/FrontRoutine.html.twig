@@ -1,0 +1,156 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}New Routine{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create a routine!</h1>
+                            </div>
+                            {{form_start(form,{'attr':{'novalidate':'novalidate' , 'class' : 'user' , 'id': 'form'}})}}
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-3">
+
+                                    {% if form_errors(form.Dejeuner) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Dejeuner) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Dejeuner,{ 'attr': {'class': 'form-control ',
+                                        'name': 'dd'} }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Midi) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Midi) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Midi,{ 'attr': {'class': 'form-control  ',
+                                        'name': 'mm'} }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Dinner) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Dinner) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Dinner,{ 'attr': {'class': 'form-control  ',
+                                        'name': 'nn'} }) }}
+                                </div>
+
+
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+
+                                    {{ form_widget(form.CalCons,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Calorie Consommé',
+                                        'hidden': true } }) }}
+                                </div>
+
+
+
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Date) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Date) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Date,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Date' } }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.objectif) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.objectif) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.objectif,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Date' } }) }}
+                                </div>
+
+                            </div>
+
+
+
+                            <button class="btn btn-primary btn-user btn-block" id="submitBtn">{{ button_label|default('Save') }}</button>
+
+                            {# <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a> #}
+
+
+                            <!-- Importation des scripts de SweetAlert -->
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+                            <script>
+
+                                const form = document.getElementById("form");
+
+
+
+                                submitBtn.addEventListener('click', (event) => {
+
+
+                            event.preventDefault();
+
+                            // Création d'une fenêtre de confirmation avec SweetAlert
+                            Swal.fire({
+                            title: 'Are you sure you want to submit the form?',
+                            text: "This action cannot be undone!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, submit it!'
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                            // Soumission du formulaire si l'utilisateur a confirmé
+                                form.submit();
+
+                            }
+                            });
+                            });
+                            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <hr>
+
+                            {{ form_end(form) }}
+                            <hr>
+                            <div class="text-center">
+                                <a href="{{ path('app_routine_index') }}">back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

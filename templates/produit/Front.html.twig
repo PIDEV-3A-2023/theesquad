@@ -1,0 +1,23 @@
+{% extends 'baseFront.html.twig' %}
+        {% block body %}
+            <div class="container">
+            <div class="grix xs1 sm5 gutter-0 card">
+                <div class="col-xs1">
+                    <p>Filtrer</p>
+                    <form  id="filters">
+                        {% for categorie in categories  %}
+                            <p><input type="checkbox" name="categories[]" id="cat{{categorie.id}} value={{categorie.id}}">
+                                <label for="cat{{categorie.id}}"> {{categorie.nom}}</label>
+                            </p>
+
+                        {% endfor %}
+                    </form>
+                </div>
+                <div class="col-xs1 col-sm4" >
+                    {% include "produit/_content.html.twig" %}
+                </div>
+            </div>
+            </div>
+
+
+        {% endblock %}

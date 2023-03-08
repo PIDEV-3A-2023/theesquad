@@ -32,6 +32,45 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('affichage_evenement_front') }}"><i class="fas fa-list"></i><span>Evenement</span></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('affichage_produit_front') }}"><i class="fas fa-list"></i><span>Produits</span></a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesCC"
+                           aria-expanded="true" aria-controls="collapsePages">
+                            <i class="fas fa-user-alt"></i>
+                            <span>Gestion location</span>
+                        </a>
+                        <div id="collapsePagesCC" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="{{ path('app_categorie_location_index') }}">Categorie </a>
+                                <a class="collapse-item" href="{{ path('app_espace_index') }}">Espace</a>
+                                <a class="collapse-item" href="{{ path('liip_imagine_filter') }}">Liste Espaces</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesCs"
+                           aria-expanded="true" aria-controls="collapsePages">
+                            <i class="fas fa-user-alt"></i>
+                            <span>Alimentation</span>
+                        </a>
+                        <div id="collapsePagesCs" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <a class="collapse-item" href="{{ path('app_routine_newRoutine') }}">Routine</a>
+                                <a class="collapse-item" href="{{ path('app_objectif_new') }}">Objectif</a>
+                                <a class="collapse-item" href="{{ path('affichage_aliment_front') }}">Aliment</a>
+                            </div>
+                        </div>
+                    </li>
+
+
+
+
+
 
                     <!-- Divider -->
                     <hr class="sidebar-divider d-none d-md-block">

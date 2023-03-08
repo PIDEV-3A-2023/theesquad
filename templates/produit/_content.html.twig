@@ -1,0 +1,51 @@
+
+
+{% for p in produit   %}
+                <div class="container">
+                    <div class="feature-post small-blog">
+                        <div class="col-md-5">
+                            <div class="feature-img">
+                                <img  src="{{ asset('Back/img/' ~ p.image )  }}" alt="" width="400" height="300" />
+                                {# <img src="images/post2.png" class="img-responsive" alt="#" /> #}
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="feature-cont">
+                                <div class="post-info">
+
+                                    <h2 ><Font color="#30458B"><B>{{p.nom}}</B></Font></h2>
+                                    <h5><B>Prix : </B>{{p.prix}}</h5>
+
+                                </div>
+                                <div class="full" >
+                                    <button  style="background-color:#30458B; border-color:#daeee5; color:#daeee5" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{ p.id }}">Détails</button>
+                                    <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path("add", {id: p.id})}}">Commander</a>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal popup pour les détails de l'espace -->
+                <div class="modal fade" id="myModal{{ p.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ p.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel{{ p.id }}">{{p.nom}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p><h4>Nom du produit :</h4> {{p.nom}}</p>
+                                <p><h4>Prix du produit :</h4> {{p.prix}}</p>
+                                <p><h4>Description du Produit :</h4> {{p.description}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+<div class="align-center"> {{ knp_pagination_render(produit) }}
+</div>

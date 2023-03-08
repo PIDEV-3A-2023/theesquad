@@ -1,0 +1,56 @@
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+{% block admin %}
+    <h1>Objectif</h1>
+
+    <h1>Aliment</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom</th>
+            <td>{{ objectif.id }}</td>
+        </tr>
+        <tr>
+            <th>Cal</th>
+            <td>{{ objectif.PoidsDes }}</td>
+        </tr>
+
+
+
+        <tr>
+            <th>Description</th>
+            <td>{{ objectif.TypeReg }}</td>
+        </tr>
+
+        <tr>
+            <th>Age</th>
+            <td>{{ objectif.Age }}</td>
+        </tr>
+
+        <tr>
+            <th>Sexe</th>
+            <td>{{ objectif.Sexe }}</td>
+        </tr>
+
+        <tr>
+            <th>Poids</th>
+            <td>{{ objectif.Poids }}</td>
+        </tr>
+
+        <tr>
+            <th>Taille</th>
+            <td>{{ objectif.Taille }}</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+    <a href="{{ path('app_objectif_index') }}">back to list</a>
+
+    <a href="{{ path('app_objectif_edit', {'id': objectif.id}) }}">edit</a>
+
+    {{ include('objectif/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+
+{% block admin %}
+<h2>Chercher une salle</h2>
+    <input id="searchbar" onkeyup="search_salle()" type="text"
+           name="search" placeholder="Search ..">
+ <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800"></h1>
+                    <div style="display :flex;">
+                            <div class="col-lg-10">
+                           
+                            </div>
+
+                            <div class="col-lg-2">
+                                <a style ="justify-content: center;display: inline-flex;width: 135px!important;height: 
+                                35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;" 
+                                href="{{ path('app_salle_new') }}">Create new</a>
+                            </div>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                       <th class="line">Id</th>
+                                                       <th class="line">Nom</th>
+                                                       <th class="line">Capacite</th>
+                                                       <th class="line">Equipement</th>
+                                                      
+                                                     
+                                
+                                                       <th>actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                         {% for salle in salles %}
+                                         <tr>
+                                         <td class="tcell">{{salle.id}}</td> 
+                                         <td class="tcell">{{salle.nom}}</td>
+                                         <td class="tcell">{{salle.capacite}}</td>
+                                        <td class="tcell">{{salle.equipement}}</td>
+                                        
+                
+    
+                                       
+                                                <td style="display: flex;" >
+                                                    <a style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #4c71de;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;
+    margin: 0px 3px 0px 3px;" href="{{ path('app_salle_show', {'id': salle.id}) }}">show</a>
+    
+                                                    <a style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #4c71de;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;
+   margin: 0px 3px 0px 3px;"  href="{{ path('app_salle_edit', {'id': salle.id}) }}">edit</a>
+
+           <form style="width: 4px;margin: 0px 3px 0px 3px; " method="post" action="{{ path('app_salle_delete', {'id': salle.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');">
+          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ salle.id) }}">
+            <button style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #fd3838;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;"  class="btn">Delete</button>
+                                                </form>
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="6">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                                 <script>
+
+        // JavaScript code
+        function search_salle() {
+            let input = document.getElementById('searchbar').value
+            input=input.toLowerCase();
+            let x = document.getElementsByClassName('tcell');
+
+            for (i = 0; i < x.length; i++) {
+                if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                    x[i].style.display="none";
+                }
+                else {
+                    x[i].style.display="list-item";
+                }
+            }
+        }
+
+    </script>
+
+                <div class="align-center">{{knp_pagination_render(salles)}} </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+                {% endblock %}
+

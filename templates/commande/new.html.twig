@@ -1,0 +1,99 @@
+{% extends '../baseBack.html.twig' %}
+
+{% block title %}New Commande{% endblock %}
+
+{% block body %}
+    <style>
+        #commande_date_month{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #commande_date_day{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #commande_date_year{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #commande_date{
+            border : transparent;
+
+        }
+
+    </style>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Ajouter Commande</h1>
+                            </div>
+                            {{form_start(form,{'attr':{'novalidate':'novalidate' , 'class' : 'user' }})}}
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {% if form_errors(form.quantiteCommande) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.quantiteCommande) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.quantiteCommande,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'quantiteCommande' } }) }}
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                {% if form_errors(form.etatCommande) is not empty %}
+                                    <div class="alert alert-danger" >
+                                        {{ form_errors(form.etatCommande) }}
+                                    </div>
+                                {% endif %}
+                                {{ form_widget(form.etatCommande,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'etatCommande'} }) }}
+                            </div>
+
+                            <div class="form-group" style="display : flex ;">
+                                <div style="margin-top: 6px;">
+                                    {{ form_label(form.dateCommande,"Date") }}
+                                </div>
+                                {{ form_widget(form.dateCommande,{ 'attr': {'class': 'form-control'} }) }}
+                                {% if form_errors(form.dateCommande) is not empty %}
+                                    <div class="alert alert-danger" >
+                                        {{ form_errors(form.dateCommande) }}
+                                    </div>
+                                {% endif %}
+                                <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Save') }}</button>
+
+                            </div>
+
+
+                            {# <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a> #}
+                            <hr>
+
+                            {{ form_end(form) }}
+                            <hr>
+                            <div class="text-center">
+                                <a href="{{ path('app_commande_index') }}">back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

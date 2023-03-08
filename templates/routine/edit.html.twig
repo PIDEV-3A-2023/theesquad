@@ -1,0 +1,138 @@
+
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+{% block admin %}
+    <style>
+        #evenement_date_month{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date_day{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date_year{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date{
+            border : transparent;
+        }
+
+    </style>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Edit Routine</h1>
+                            </div>
+                            {{form_start(form,{'attr':{'novalidate':'novalidate' , 'class' : 'user' }})}}
+
+
+                            <div class="form-group  ">
+
+                                <div class="col-sm-3">
+
+                                    {% if form_errors(form.Dejeuner) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Dejeuner) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Dejeuner,{ 'attr': {'class': 'form-control   '} }) }}
+                                </div>
+
+
+
+
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Midi) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Midi) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Midi,{ 'attr': {'class': 'form-control  '} }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Dinner) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Dinner) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Dinner,{ 'attr': {'class': 'form-control  '} }) }}
+                                </div>
+
+
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {% if form_errors(form.CalCons) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.CalCons) }}
+                                        </div>
+                                    {% endif %}
+                                    <div class="form-check">
+                                    {{ form_widget(form.CalCons,{ 'attr': {'class': 'form-control form-control-user form-check-input' , 'placeholder' : 'Calorie Recommandé' } }) }}
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Date) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Date) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Date,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Date' } }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.objectif) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.objectif) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.objectif,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Date' } }) }}
+                                </div>
+
+                            </div>
+
+
+
+                            <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Save') }}</button>
+
+                            {# <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a> #}
+                            <hr>
+
+                            {{ form_end(form) }}
+                            <hr>
+                            <div class="text-center">
+                                <a href="{{ path('app_routine_index') }}">back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+
+

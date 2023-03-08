@@ -1,0 +1,44 @@
+{% extends 'coach/dashboardCoach.html.twig' %}
+
+{% block coach %}
+
+    {# {{ dump(evenement)}} affiche l contenu mtaa l variable fel page bch taaref fama erreur walee #}
+
+    <h1>Aliment</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nom</th>
+            <td>{{ aliment.Nom }}</td>
+        </tr>
+        <tr>
+            <th>Cal</th>
+            <td>{{ aliment.NbCal }}</td>
+        </tr>
+
+
+
+        <tr>
+            <th>Description</th>
+            <td>{{ aliment.Descr }}</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_aliment_index') }}">back to list</a>
+
+    <a style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #4c71de;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;
+    margin: 0px 3px 0px 3px;"  href="{{ path('app_aliment_edit', {'id': aliment.Nom}) }}">edit</a>
+
+    {{ include('aliment/_delete_form.html.twig') }}
+{% endblock %}

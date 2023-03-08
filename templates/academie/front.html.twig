@@ -1,0 +1,53 @@
+{% extends 'baseFront.html.twig' %}
+        {% block body %}
+        <h1> les académies </h1>
+         <a href="{{ path('orderByNom')}}">
+                <button type="button" class="btn btn-success rounded-pill">Academies triés par nom </button>
+                </a> 
+            {% for a in academie %}
+               <div class="container">
+                    <div class="feature-post small-blog">
+                        <div class="col-md-7">
+                            <div class="feature-cont">
+                                <div class="post-info">
+                                   <h2 ><Font color="#30458B"><B>{{a.nom}}</B></Font></h2> 
+                                   <h5><B>Adresse : </B>{{a.adresse}}</B></h5>
+                                   <h5> <b>Numéro de téléphone : </b>{{a.numtel}}</h5>
+                                   <h5><b>Sport proposé :</b> {{a.sportpropose}}</h5>
+                                    <ul class="tc_meta float-right">
+                                        {# <a href="{{ path( 'app_academie_participer' , {'id':a.id} )}}"><button type="button" class="btn btn-lg btn-thm" style="background-color:#30458B; border-color:#daeee5; color:#daeee5; margin-left: 10px" >Particier</button></a> #}
+                                        {% if check is defined  %}
+
+                                        {% set checkpar = true %}
+                                        {% for ch in check  %}
+                                            {% if a.id == ch.id  %}
+                                                {# ken l event eli aamel fih user participation = event (checkpar=false) bch ywali l button imparticiper #}
+                                                {% set checkpar = false %}
+                                            {% endif   %}
+                                        {% endfor %}
+
+                                        {% if checkpar == true  %}
+
+                                        <ul class="tc_meta float-right">
+                                            <a href="{{ path( 'app_academie_abonner' , {'id':a.id} )}}"><button type="button" class="btn btn-lg btn-thm" style="background-color:#30458B; border-color:#daeee5; color:#daeee5; margin-left: 10px" >S'abonner</button></a>
+                                        </ul>
+                                        {% else  %}
+                                            <ul class="tc_meta float-right">
+                                                <a href="{{ path( 'enleverabonne' , {'id':a.id} )}}"><button type="button" class="btn btn-lg btn-thm" style="margin-left: 10px" >S'abstenir</button></a>
+                                            </ul>
+                                        {% endif   %}
+
+                                        {% endif   %}
+                                    </ul>
+                                </div>
+                            </div>
+                             <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" 
+                                  href="{{path("affichage_academie_salle_front", {id: a.id})}}">Details</a>
+
+                        </div>
+                    </div>
+                </div>
+                       
+            {% endfor %}
+
+        {% endblock %}

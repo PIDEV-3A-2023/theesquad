@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    {{ form_start(registrationForm,{'attr':{'novalidate':'novalidate'}} )}}
+
+    <div class="bg-gradient-primary">
+        <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block"></div>
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Créez un compte Coach !</h1>
+                                </div>
+                                <div class="user">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Nom</label>
+                                            {{ form_widget(registrationForm.nom,{'attr':{'class':'form-control form-control-user'}}) }}
+                                            {{ form_errors(registrationForm.nom,{'attr':{'class':'text-danger'}}) }}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label>Prénom</label>
+                                            {{ form_widget(registrationForm.prenom,{'attr':{'class':'form-control form-control-user'}}) }}
+                                            {{ form_errors(registrationForm.prenom,{'attr':{'class':'text-danger'}}) }}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Date de naissance</label>
+                                        {{ form_widget(registrationForm.dateNaissance) }}
+                                        {{ form_errors(registrationForm.dateNaissance,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Diplôme</label>
+                                        {{ form_widget(registrationForm.diplome,{'attr':{'class':'form-control form-control-user'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>E-mail</label>
+                                        {{ form_widget(registrationForm.email,{'attr':{'class':'form-control form-control-user'}}) }}
+                                        {{ form_errors(registrationForm.email,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Mot de passe</label>
+                                        {{ form_widget(registrationForm.plainPassword,{'attr':{'class':'form-control form-control-user'}}) }}
+                                        {{ form_errors(registrationForm.plainPassword,{'attr':{'class':'text-danger'}}) }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        {{ form_widget(registrationForm.agreeTerms) }}
+                                        <label>Accepter les termes et conditions</label>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">S'inscrire</button>
+
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_login') }}">Vous avez déjà un compte? Connexion!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

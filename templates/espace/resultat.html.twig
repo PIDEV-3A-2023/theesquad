@@ -1,0 +1,13 @@
+
+{% if results %}
+    <ul>
+        {% for espace in espaces %}
+            <li>
+                <a href="{{ path('app_espace_show', {'id': espace.id}) }}">{{ espace.nom }}</a>
+                <p>{{ espace.caracteristique }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Aucun résultat trouvé.</p>
+{% endif %}

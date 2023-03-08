@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <div class="bg-gradient-primary">
+        <div class="container">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block"></div>
+                        <div class="col-lg-12">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Vous êtes...</h1>
+                                </div>
+                                <div class="user">
+
+                                    <div class="row g-4">
+                                        <!-- Item -->
+                                        <div class="col-sm-6 col-md-4 col-xl-3">
+                                        </div>
+
+                                        <!-- Item -->
+                                        <div class="col-sm-6 col-md-4 col-xl-3">
+                                            <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
+                                                <!-- Image -->
+                                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3">
+                                                    <img style="width: 200px; height: 200px; object-fit: cover;" src="assets\img\Clientimg.svg" alt="">
+                                                </div>
+                                                <!-- Title -->
+                                                <h5 class="mb-1"><a href="{{ path('app_registerClient') }}" class="stretched-link">Client</a></h5>
+                                            </div>
+                                        </div>
+
+                                        <!-- Item -->
+                                        <div class="col-sm-6 col-md-4 col-xl-3">
+                                            <div class="bg-primary bg-opacity-10 rounded-3 text-center p-3 position-relative btn-transition">
+                                                <!-- Image -->
+                                                <div class="icon-xl bg-body mx-auto rounded-circle mb-3">
+                                                    <img style="width: 200px; height: 200px; object-fit: cover;" src="assets\img\Coachimg.svg" alt="">
+                                                </div>
+                                                <!-- Title -->
+                                                <h5 class="mb-1"><a href="{{ path('app_registerCoach') }}" class="stretched-link">Coach</a></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_forgot_password_request') }}">Mot de passe oublié?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="{{ path('app_login') }}">Vous avez déjà un compte? Connexion!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

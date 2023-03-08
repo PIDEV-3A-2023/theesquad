@@ -1,0 +1,102 @@
+{% extends 'coach/dashboardCoach.html.twig' %}
+
+{% block coach %}
+    <style>
+        #evenement_date_month{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date_day{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date_year{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date{
+            border : transparent;
+        }
+
+    </style>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create an aliment!</h1>
+                            </div>
+                            {{form_start(form,{'attr':{'novalidate':'novalidate' , 'class' : 'user' }})}}
+
+
+
+                            <div class="form-group row">
+
+                                    {% if form_errors(form.Nom) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Nom) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Nom,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'nom' } }) }}
+                                </div>
+
+
+                                <div class="form-group">
+                                    {% if form_errors(form.NbCal) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.NbCal) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.NbCal,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Cal'} }) }}
+                                </div>
+
+                                <div class="form-group">
+                                    {% if form_errors(form.Descr) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Descr) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Descr,{ 'attr': {'class': 'form-control form-control-user' , 'placeholder' : 'Description'} }) }}
+                                </div>
+
+
+
+
+
+
+
+                            <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Save') }}</button>
+                            </div>
+
+
+
+                            <hr>
+
+                            {{ form_end(form) }}
+                            <hr>
+
+
+                            <div class="text-center">
+                                <a href="{{ path('app_aliment_index') }}">back to list</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

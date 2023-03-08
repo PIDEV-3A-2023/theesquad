@@ -1,0 +1,99 @@
+{% extends 'client/dashboardClient.html.twig' %}
+
+{% block client %}
+
+ <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <div style="display :flex;">
+                            <div class="col-lg-10">
+                            <p class="mb-4">table de gestion des locations<a target="_blank"
+                                    href="https://datatables.net"></a>.</p>
+                            </div>
+
+                            <div class="col-lg-2">
+                                <a style ="justify-content: center;display: inline-flex;width: 135px!important;height: 
+                                35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;" 
+                                href="{{ path('app_categorie_location_new') }}">créer catégorie</a>
+                            </div>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                             <th>Id</th>
+                                             <th>Nom</th>
+                                             <th>Description</th>
+                                             <th>actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for categorie_location in categorie_locations %}
+                                            <tr>
+                                                <td>{{ categorie_location.id }}</td>
+                                                <td>{{ categorie_location.nom }}</td>
+                                                <td>{{ categorie_location.description }}</td>
+                                                       <td style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center;">
+    <a style="display: flex; justify-content: center; align-items: center;  width: 90px; height: 35px; background-color: #4c71de; color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px;" href="{{ path('app_categorie_location_show', {'id': categorie_location.id}) }}">show</a>
+    <a style=" display: flex; justify-content: center; align-items: center;  width: 90px; height: 35px; background-color: #3CB371; color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px;" href="{{ path('app_categorie_location_edit', {'id': categorie_location.id}) }}">edit</a>
+    <form method="post" action="{{ path('app_categorie_location_delete', {'id': categorie_location.id}) }}" onsubmit="return confirm('vous etes sur de supprimer cette catégorie de location ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ categorie_location.id) }}">
+        <button style="width: 90px; height: 35px; background-color: #fd3838; color: white; padding-top: 5px; border-radius: 10px; margin-left: 3px; margin-top: auto;" class="btn">Delete</button>
+    </form>
+</td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="6">no records found</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+    {# <h1>CategorieLocation index</h1> #}
+
+    {# <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_location in categorie_locations %}
+            <tr>
+                <td>{{ categorie_location.id }}</td>
+                <td>{{ categorie_location.nom }}</td>
+                <td>{{ categorie_location.description }}</td>
+                <td>
+                    <a href="{{ path('app_categorie_location_show', {'id': categorie_location.id}) }}">show</a>
+                    <a href="{{ path('app_categorie_location_edit', {'id': categorie_location.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table> #}
+
+    <a href="{{ path('app_espace_new') }}">Créer espace</a>
+{% endblock %}

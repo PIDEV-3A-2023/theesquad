@@ -1,0 +1,43 @@
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+{% block admin %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ routine.id }}</td>
+            </tr>
+            <tr>
+                <th>Dej</th>
+                <td>{{ routine.Dejeuner.Nom }}</td>
+            </tr>
+            <tr>
+                <th>Midi</th>
+                <td>{{ routine.Midi.Nom}}</td>
+            </tr>
+            <tr>
+                <th>Dinner</th>
+                <td>{{ routine.Dinner.Nom    }}</td>
+            </tr>
+            <tr>
+                <th>CalCons</th>
+                <td>{{ routine.CalCons }}</td>
+            </tr>
+            <tr>
+                <th>Objectif ID</th>
+                <td>{{ routine.objectif.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ routine.Date ? routine.Date|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_routine_index') }}">back to list</a>
+
+    <a href="{{ path('app_routine_edit', {'id': routine.id}) }}">edit</a>
+
+    {{ include('routine/_delete_form.html.twig') }}
+{% endblock %}

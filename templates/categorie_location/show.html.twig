@@ -1,0 +1,28 @@
+{% extends 'client/dashboardClient.html.twig' %}
+
+{% block client %}
+    <h1>CategorieLocation</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ categorie_location.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ categorie_location.nom }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ categorie_location.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_categorie_location_index') }}">back to list</a>
+
+    <a href="{{ path('app_categorie_location_edit', {'id': categorie_location.id}) }}">edit</a>
+
+    {{ include('categorie_location/_delete_form.html.twig') }}
+{% endblock %}

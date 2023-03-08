@@ -1,0 +1,76 @@
+ {% extends 'baseFront.html.twig' %}
+ {% block body %}
+ 
+ <h1> les espaces disponibles </h1>
+  {% if esp is empty %}
+    <p>Liste est vide</p>
+    {% else %}
+           {% for es in esp %}
+    {% if es.dispo == 'disponible' %}
+        <div class="container">
+            <div class="feature-post small-blog">
+                <div class="col-md-5">
+                    <div class="feature-img">
+                        <img src="{{ asset('Back/img/' ~ es.image ) }}" alt="" width="400" height="300" />
+                
+
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="feature-cont">
+                        <div class="post-info">
+                            <h2><font color="#30458B"><b>{{es.nom}}</b></font></h2>
+                        </div>
+                        <div class="post-heading">
+                            <h4><b>Adresse :</b> {{es.adresse}}</h4>
+                            <h4><b>Caractéristique : </b>{{es.caracteristique}}</h4>
+                           {% if es.prixlocation > 100 %}
+
+                <h4 style="color: green;"> <b>prix de location avec remise de 10% : </b>{{ es.getPrixLocationAvecRemise() }}</h4> <h4 style="text-decoration:line-through;"> <b>Ancien prix : </b>{{ es.prixlocation }}</h4>
+                          {% else %}
+                <h4 style="color: red;"> <b>pas de remise : </b>{{ es.prixlocation }}</h4>
+                          {% endif %}
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{ es.id }}">Détails</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal popup pour les détails de l'espace -->
+        <div class="modal fade" id="myModal{{ es.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ es.id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel{{ es.id }}">{{es.nom}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p><h4>Nom de l'espace :</h4> {{es.nom}}</p>
+                        <p><h4>Adresse de l'espace :</h4> {{es.adresse}}</p>
+                        <p><h4>Caractéristiques de l'espace :</h4> {{es.caracteristique}}</p>
+                        <p><h4>tarif horaire de location de l'espace :</h4> {{es.tarifhoraire ? es.tarifhoraire|date('Y-m-d H:i:s') : '' }}</p>
+                        {% if es.prixlocation > 100 %}
+
+                <p><h4 style="color: green;"> <b>remise 10% : </b>{{ es.getPrixLocationAvecRemise() }}</h4></p>
+                          {% else %}
+                <p><h4 style="color: red;"> <b>pas de remise : </b>{{ es.prixlocation }}</h4></p>
+                          {% endif %}
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+    {% endif %}
+        {% endblock %}
+
+
+
+
+

@@ -1,0 +1,76 @@
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+{% block admin %}
+
+
+
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Listes des Coachs validés</h1>
+        </div>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nom & Prénom</th>
+                            <th>DateNaissance</th>
+                            <th>Télèphone</th>
+                            <th>Adresse e-mail</th>
+                            <th>État e-mail</th>
+                            <th>État compte</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for coach in coaches %}
+                            <tr>
+                                <td>
+                                    <img style="width: 60px; height: 60px; object-fit: cover;" class="img-profile rounded-circle" src="{{ asset('Client_img/' ~ coach.image) }}">
+                                    <span>{{ coach.nom }} {{ coach.prenom }}</span>
+                                </td>
+                                <td>{{ coach.dateNaissance ? coach.dateNaissance|date('Y-m-d') : '' }}</td>
+                                <td>{{ coach.telephone }}</td>
+                                <td>{{ coach.email }}</td>
+                                <td>{{ coach.verified ? 'Vérifié' : 'Non vérifié' }}</td>
+                                <td>{{ coach.etatCompte ? 'Confirmé' : 'Non confirmé' }}</td>
+                                <td>
+                                    <a class="btn btn-circle btn-primary" data-toggle="tooltip" data-placement="top" title="Voir" href="{{ path('app_admin_showCoach', {'id': coach.id}) }}"><i class="fas fa-eye"></i></a>
+                                    <a class="btn btn-circle btn-danger" data-toggle="tooltip" data-placement="top" title="Désactiver compte" href="{{ path('app_Coach_desactiver', {'id': coach.id}) }}"><i class="fas fa-user-times"></i></a>
+                                    <a class="btn btn-circle btn-info" data-toggle="tooltip" data-placement="top" title="Confirmer" href="{{ path('app_Coach_confirmer', {'id': coach.id}) }}"><i class="fas fa-check-circle"></i></a>
+                                    <a class="btn btn-circle btn-dark" data-toggle="tooltip" data-placement="top" title="Supprimer" href="{{ path('app_coach_delete', {'id': coach.id}) }}"><i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="12">no records found</td>
+                            </tr>
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="card-footer bg-transparent p-0">
+                        <!-- Pagination START -->
+                        <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
+                            <!-- Content -->
+                            <p class="mb-0 text-center text-sm-start"></p>
+                            <!-- Pagination -->
+                            <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+                                {{ knp_pagination_render(coaches) }}
+                            </nav>
+                        </div>
+                        <!-- Pagination END -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

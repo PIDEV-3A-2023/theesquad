@@ -1,0 +1,59 @@
+{% extends 'baseFront.html.twig' %}
+        {% block body %}
+            {% for a in a   %}
+                <div class="container">
+                    <div class="feature-post small-blog">
+
+                        <div class="col-md-7">
+                            <div class="feature-cont">
+                                <div class="post-info">
+
+                                    <h2 ><Font color="#30458B"><B>{{a.Nom}}</B></Font></h2>
+                                    <h5><B>Nombre de calorie : </B>{{a.NbCal}}</h5>
+
+
+
+                                </div>
+                            </div>
+
+                            <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path("app_objectif_new")}}"> Objectif</a>
+                            <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path("app_routine_newRoutine")}}">Routine</a>
+
+
+                            <button  style="background-color:#30458B; border-color:#daeee5; color:#daeee5" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal{{ a.id }}">Détails</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+                <!-- Modal popup pour les détails de l'espace -->
+                <div class="modal fade" id="myModal{{ a.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ a.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel{{ a.id }}">{{a.Nom}}</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p><h4>Nom de l'aliment :</h4> {{a.Nom}}</p>
+                                <p><h4>Nombre de calories :</h4> {{a.NbCal}}</p>
+                                <p><h4>Description  :</h4> {{a.Descr}}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+
+        {% endblock %}

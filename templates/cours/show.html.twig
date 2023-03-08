@@ -1,0 +1,60 @@
+{% extends 'admin/dashboardAdmin.html.twig' %}
+
+
+{% block admin %}
+        <div style="display:flex;">
+        <div class="col-lg-8">
+            <h1>Cours</h1>
+        </div>
+        <div class="col-lg-4" style="display :flex">
+            <a style="justify-content: center; display: inline-flex; width: 90px!important; height: 35px; background-color: #4c71de;
+                    color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;"
+                    href="{{ path('app_cours_index') }}">Retourner</a>
+
+            <a style="justify-content: center; display: inline-flex; width: 90px!important; height: 35px; background-color: #4c71de;
+                    color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px 0px 3px;"
+                    href="{{ path('app_cours_edit', {'id': cours.id}) }}">Modifier</a>
+
+            <form style="width: 4px;margin: 0px 3px 0px 3px; width: 80px!important;" method="post" action="{{ path('app_cours_delete', {'id': cours.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément?');">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ cours.id) }}">
+                <button style="justify-content: center; display: inline-flex; width: 90px!important; height: 35px;
+                background-color: #fd3838; color: white; padding-top: 5px; border-radius: 10px;"  
+                class="btn">Supprimer</button>
+            </form>
+        </div>
+    </div>
+
+    <table class="table">
+        <tbody>
+             <tr>
+                <th>Id</th>
+                <td>{{ cours.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ cours.nom }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ cours.date ? cours.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ cours.duree }}</td>
+            </tr>
+            <tr>
+                <th>Nbparticipants</th>
+                <td>{{ cours.nbparticipants }}</td>
+            </tr>
+               <tr>
+                <th>Salle</th>
+                <td>{{ cours.salle.nom }}</td>
+            </tr>
+
+             
+        </tbody>
+    </table>
+
+  
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-top: 50px;
+        }
+
+        .success-message {
+            background-color: #c2e6c3;
+            border: 1px solid #7cbc7c;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 50px;
+        }
+
+        p {
+            font-size: 24px;
+            margin-top: 30px;
+        }
+
+        a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <div class="success-message">
+        <h1>Paiement avec succès</h1>
+        <p> Merci pour votre achat
+            <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" href="{{path("affichage_produit_front")}}">
+                Retourner à la page d'accueil
+            </a>
+        </p>
+
+    </div>
+{% endblock %}

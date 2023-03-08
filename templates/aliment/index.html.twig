@@ -1,0 +1,136 @@
+{% extends 'coach/dashboardCoach.html.twig' %}
+
+{% block coach %}
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+        <div style="display :flex;">
+            <div class="col-lg-10">
+                <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                    For more information about DataTables, please visit the <a target="_blank"
+                                                                               href="https://datatables.net">official DataTables documentation</a>.</p>
+            </div>
+
+            <div class="col-lg-2">
+                <a style ="justify-content: center;display: inline-flex;width: 135px!important;height:
+                                35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;"
+                   href="{{ path('app_aliment_new') }}">Create new</a>
+            </div>
+        </div>
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+
+                            <th>Nom</th>
+                            <th>Nombre Calories(Kcal)</th>
+                            <th>Descr</th>
+
+                            <th>actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for aliment in aliments %}
+                            <tr>
+                                <td>{{ aliment.Nom }}</td>
+                                <td>{{ aliment.NbCal }}</td>
+                                <td>{{ aliment.Descr }}</td>
+
+
+                                <td style="display: flex;" >
+                                    <a style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #4c71de;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;
+    margin: 0px 3px 0px 3px;" href="{{ path('app_aliment_show', {'id': aliment.id}) }}">show</a>
+
+                                    <a style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #4c71de;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;
+    margin: 0px 3px 0px 3px;"  href="{{ path('app_aliment_edit', {'id': aliment.id}) }}">edit</a>
+
+
+                                    <form style="width: 4px;margin: 0px 3px 0px 3px; " method="post" action="{{ path('app_aliment_delete', {'id': aliment.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ aliment.id) }}">
+                                        <button style="justify-content: center;
+    display: inline-flex;
+    width: 90px!important;
+    height: 35px;
+    background-color: #fd3838;
+    color: white;
+    padding-top: 5px;
+    border-radius: 10px;"  class="btn">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="6">no records found</td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+
+    {# <h1>Evenement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Adresse</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for evenement in evenements %}
+            <tr>
+                <td>{{ evenement.id }}</td>
+                <td>{{ evenement.nom }}</td>
+                <td>{{ evenement.type }}</td>
+                <td>{{ evenement.date ? evenement.date|date('Y-m-d') : '' }}</td>
+                <td>{{ evenement.adresse }}</td>
+                <td>
+                    <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">show</a>
+                    <a href="{{ path('app_evenement_edit', {'id': evenement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table> #}
+
+{% endblock %}

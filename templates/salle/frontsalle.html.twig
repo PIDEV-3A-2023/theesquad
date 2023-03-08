@@ -1,0 +1,67 @@
+{#  {% extends 'baseFront.html.twig' %}
+{% block title %}Les salles{% endblock %}
+{% block body %}
+    <h1> les salles </h1>
+
+    {% for s in salles %}
+                  <div class="container">
+                  <div class="feature-post small-blog">
+                     <div class="col-md-5">
+                
+                     </div>
+                     <div class="col-md-7">
+                        <div class="feature-cont">
+                           <div class="post-info">
+                              
+                                 <h2 ><Font color="#30458B"><B>{{s.nom}}</B></Font></h2>
+               
+                           </div>
+
+                             <div class="post-heading">
+                              <h4><B>Capacite : </B>{{s.capacite}}</B></h4>
+                              <h4> <b>Equipement : </b>{{s.equipement}}</h4>
+                              <h4><b>Academie :</b> {{s.academie.nom}}</h4>
+                              
+                              <div class="full" >
+                                 <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" 
+                                   href=""</a> 
+                      
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div> <!-- Fermeture de la balise div text-center -->
+{% endblock %}
+  #}
+ {% extends 'baseFront.html.twig' %}
+        {% block body %}
+         <h1> les salles</h1>
+            {% for s in salle %}
+               <div class="container">    
+                 <div class="feature-post small-blog">
+                        <div class="col-md-7">
+                            <div class="feature-cont">
+                                <div class="post-info">
+                                   <h2 ><Font color="#30458B"><B>{{s.nom}}</B></Font></h2> 
+                                   <h5><B>Capacite : </B>{{s.capacite}}</B></h5>
+                                   <h5> <b>Equipement : </b>{{s.equipement}}</h5>
+                                   <h5><b>Academie :</b> {{s.academie.nom}}</h5> 
+                                </div>
+                            </div>
+                             <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" 
+                                  href="{{path("affichage_salles_cours_front",{id: s.id})}}">Details</a>
+
+                              <a class="btn" style="background-color:#30458B; border-color:#daeee5; color:#daeee5" 
+                                  href="{{path("app_academie_indexfront",{id: s.id})}}">Retour</a>
+
+                        </div>
+                     </div>
+                </div>
+                       
+            {% endfor %}
+
+        {% endblock %}

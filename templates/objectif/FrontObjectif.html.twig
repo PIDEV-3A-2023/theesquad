@@ -1,0 +1,140 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}New Routine{% endblock %}
+
+{% block body %}
+    <style>
+        #evenement_date_month{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date_day{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date_year{
+            border: 1px solid #d1d3e2;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        #evenement_date{
+            border : transparent;
+        }
+
+    </style>
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Create a objectif!</h1>
+                            </div>
+                            {{form_start(form,{'attr':{'novalidate':'novalidate' , 'class' : 'user' }})}}
+
+
+                            <div class="form-group row">
+
+                                <div class="col-sm-3">
+
+                                    {% if form_errors(form.PoidsDes) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.PoidsDes) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.PoidsDes,{ 'attr': {'class': 'form-control ',
+                                        'name': 'dd', 'placeholder' : 'PoidsDes'} }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.TypeReg) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.TypeReg) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.TypeReg,{ 'attr': {'class': 'form-control  ',
+                                        'name': 'mm', 'placeholder' : 'TypeReg'} }) }}
+                                </div>
+
+
+
+
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Age) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Age) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Age,{ 'attr': {'class': 'form-control  ',
+                                        'name': 'nn', 'placeholder' : 'Age'} }) }}
+                                </div>
+
+
+
+
+
+
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Sexe) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Sexe) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Sexe,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Sexe' } }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Poids) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Poids) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Poids,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Poids actuel' } }) }}
+                                </div>
+
+                                <div class="col-sm-3">
+                                    {% if form_errors(form.Taille) is not empty %}
+                                        <div class="alert alert-danger" >
+                                            {{ form_errors(form.Taille) }}
+                                        </div>
+                                    {% endif %}
+                                    {{ form_widget(form.Taille,{ 'attr': {'class': 'form-control  '  , 'placeholder' : 'Taille' } }) }}
+                                </div>
+
+
+                            </div>
+
+
+
+                            <button class="btn btn-primary btn-user btn-block">{{ button_label|default('Save') }}</button>
+
+                            {# <a href="login.html" class="btn btn-primary btn-user btn-block">
+                                    Register Account
+                                </a> #}
+                            <hr>
+
+                            {{ form_end(form) }}
+                            <hr>
+                            <div class="text-center">
+                                <a href="{{ path('app_routine_index') }}">back to list</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends 'client/dashboardClient.html.twig' %}
+
+{% block client %}
+<!-- Begin Page Content -->
+                <div class="container-fluid">
+
+
+<h2>Chercher un espace</h2>
+<div class="sidebar-search" style="margin-bottom: 1%;">
+<div class="input-group custom-search-form">
+<input id="search" class="form-control" onkeyup="search_espace()" type="text" name="search" placeholder="cherchez ici ..">
+    
+  </div>
+</div>
+
+                     
+                    
+                    <div style="display :flex;">
+                            <div class="col-lg-10">
+                         
+                            </div>
+
+                            <div class="col-lg-2" style="margin-bottom: 1%;">
+                                <a style ="justify-content: center;display: inline-flex;width: 135px!important;height: 
+                                35px;background-color: #4c71de;color: white;padding-top: 5px;border-radius: 10px;" 
+                                href="{{ path('app_espace_new') }}">Créer un espace</a>
+                            </div>
+                    </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                             <th>Id</th>
+                                             <th>Nom</th>
+                                             <th>Caracteristique</th>
+                                             <th>Image</th>
+                                             <th>Adresse</th>
+                                             <th>Dispo</th>
+                                             <th>Tarifhoraire</th>
+                                             <th>Prixlocation</th>
+                                             <th>actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                        {% for espace in espaces %}
+                                            <tr>
+                                                <td class="line">{{ espace.id }}</td>
+                                                <td class="line">{{ espace.nom }}</td>
+                                                <td class="line">{{ espace.caracteristique }}</td>
+                                                <td class="line">{{ espace.image }}</td>
+                                                <td class="line">{{ espace.adresse }}</td>
+                                                <td>
+                                                {% if espace.dispo == 'disponible' %}
+                <i class="fas fa-circle text-success"></i>
+            {% elseif espace.dispo == 'non disponible' %}
+                <i class="fas fa-circle text-danger"></i>
+            {% endif %}
+            
+                                                </td>
+                                                <td class="line">{{ espace.tarifhoraire ? espace.tarifhoraire|date('Y-m-d H:i:s') : '' }}</td>
+                                                <td class="line">{{ espace.prixlocation }}</td>
+                              <td style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center;">
+    <a style="display: flex; justify-content: center; align-items: center;  width: 90px; height: 35px; background-color: #4c71de; color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px;" href="{{ path('app_espace_show', {'id': espace.id}) }}">show</a>
+    <a style=" display: flex; justify-content: center; align-items: center;  width: 90px; height: 35px; background-color: #3CB371; color: white; padding-top: 5px; border-radius: 10px; margin: 0px 3px;" href="{{ path('app_espace_edit', {'id': espace.id}) }}">edit</a>
+    <form method="post" action="{{ path('app_espace_delete', {'id': espace.id}) }}" onsubmit="return confirm('vous etes sur de supprimer cette espace de location ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ espace.id) }}">
+        <button style="width: 90px; height: 35px; background-color: #fd3838; color: white; padding-top: 5px; border-radius: 10px; margin-left: 3px; margin-top: auto;" class="btn">Delete</button>
+    </form>
+</td>
+
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                <td colspan="6">la liste est vide</td>
+                                            </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+    {# Fonction de recherche d'espace selon multiple criteres  #}
+    <script>
+    function search_espace() {
+    //la fonction récupère la valeur de l'élément HTML avec l'ID "search" et la stocke dans une variable appelée "input"
+    let input = document.getElementById('search').value
+    //convertir la chaîne de caractères en minuscules pour effectuer une recherche insensible à la casse.
+    input = input.toLowerCase();
+    // récupèrer tous les éléments "tr" dans la balise "tbody" de la table HTML avec l'ID "dataTable" et les stocke dans une variable appelée "rows".
+    let rows = document.querySelectorAll("#dataTable tbody tr");
+     //créer un tableau vide pour stocker les correspondances trouvées.
+    let matches = [];
+
+    for (let i = 0; i < rows.length; i++) {
+        //Pour chaque ligne, la boucle "for"  parcourt chaque colonne ("td") avec la classe "line".
+        let row = rows[i];
+        let cols = row.querySelectorAll(".line");
+        let match = false;
+
+        
+//Pour chaque colonne, la fonction vérifie si la chaîne de caractères de recherche est incluse dans le contenu HTML de la colonne (en minuscules). 
+        for (let j = 0; j < cols.length; j++) {
+            let col = cols[j];
+            if (col.innerHTML.toLowerCase().includes(input)) {
+                //Si c'est le cas, la variable "match" est définie sur "true" et la boucle interne est interrompue.
+                match = true;
+                break;
+            }
+        }
+    //Si au moins une colonne correspond, la ligne est ajoutée au tableau "matches".
+        if (match) {
+            matches.push(row);
+        }
+    }
+    //Une fois que toutes les lignes ont été parcourues, la fonction supprime toutes les lignes de la table HTML (l'élément "tbody").
+    let tbody = document.querySelector("#dataTable tbody");
+    tbody.innerHTML = "";
+//Si des correspondances ont été trouvées, la fonction ajoute chaque ligne correspondante à la table HTML.
+    if (matches.length > 0) {
+        for (let i = 0; i < matches.length; i++) {
+            tbody.appendChild(matches[i]);
+        }
+    } else {
+        //Sinon, la fonction crée une nouvelle ligne contenant une cellule avec un texte "Aucun résultat trouvé." et ajoute cette ligne à la table HTML.
+        let row = document.createElement("tr");
+        let cell = document.createElement("td");
+        cell.colSpan = 9;
+        cell.textContent = "Aucun résultat trouvé.";
+        row.appendChild(cell);
+        tbody.appendChild(row);
+    }
+}
+</script>
+
+                            {#    <script>
+                                  function search_espace() {
+    // Récupérer la valeur de recherche entrée par l'utilisateur
+    var input = document.getElementById("search");
+    var filter = input.value.toLowerCase();
+
+    // Récupérer tous les éléments de la liste d'espaces
+    var espaceList = document.getElementsByTagName("tr");
+
+    // Boucler à travers chaque élément de la liste et masquer ceux qui ne correspondent pas à la recherche
+    for (var i = 0; i < espaceList.length; i++) {
+         // cibler la deuxième cellule de la ligne (index 1) qui contient le nom d'espace. 
+        var espaceNom = espaceList[i].getElementsByTagName("td")[1];
+        if (espaceNom) {
+            var espaceNomText = espaceNom.textContent || espaceNom.innerText;
+            if (espaceNomText.toLowerCase().indexOf(filter) > -1) {
+                espaceList[i].style.display = "";
+            } else {
+                espaceList[i].style.display = "none";
+                
+            }
+        }
+    }
+} 
+</script> #}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+       
+
+ 
+    
+
+                                <div class="align-center"> {{ knp_pagination_render(espaces) }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+   
+    <a href="{{ path('app_categorie_location_new') }}">Créer catégorie</a> 
+{% endblock %}
